@@ -14,51 +14,54 @@ import androidx.annotation.Nullable;
 import com.example.tourisme.R;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-public class TourismeModel extends ArrayAdapter<String> {
-    private ArrayList<String> values;
-    private  int resource;
-    private Context context;
+public class TourismeModel{
 
-    public void setValues(ArrayList<String> v){
-        this.values =v;
+    private String title;
+    private String shortDescription;
+    private Date date_publish;
+    private  String url_image;
+
+    public String getTitle() {
+        return title;
     }
 
-    public void setResource(int res){
-        this.resource = res;
-    }
-    public void setContext(Context contex){
-        this.context = contex;
-    }
-    public ArrayList<String> getValues(){
-        return this.values;
-    }
-    public int getResource(){
-        return this.resource;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public Context getContext(){
-        return this.context;
-    }
-    public TourismeModel(@NonNull Context context, int resource, ArrayList<String> values) {
-        super(context, resource,values);
-        this.setContext(context);
-        this.setResource(resource);
-        this.setValues(values);
+    public String getShortDescription() {
+        return shortDescription;
     }
 
-    @NonNull
-    @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        String tourisme_title= this.getValues().get(position);
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
+    }
 
-        View tourisme_item_view = LayoutInflater.from(this.getContext()).inflate(this.getResource(),parent,false);
-        TextView title_detail = tourisme_item_view.findViewById(R.id.title_detail_list);
+    public Date getDate_publish() {
+        return date_publish;
+    }
 
-       title_detail.setText(""+tourisme_title);
+    public void setDate_publish(Date date_publish) {
+        this.date_publish = date_publish;
+    }
 
-        return tourisme_item_view;
+    public String getUrl_image() {
+        return url_image;
+    }
+
+    public void setUrl_image(String url_image) {
+        this.url_image = url_image;
+    }
+
+    public TourismeModel(){}
+    public TourismeModel(String title, String shortDescription, Date date_publish, String url_image) {
+        this.title = title;
+        this.shortDescription = shortDescription;
+        this.date_publish = date_publish;
+        this.url_image = url_image;
     }
 }
 

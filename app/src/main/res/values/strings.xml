@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Tourisme</string>
-    <string name="home_name">Page</string>
+    <string name="login_name">Connexion sur Tourisme</string>
+    <string name="signup_name">Inscription sur Tourisme</string>
+    <string name="home_name">Acceuil</string>
+    <string name="search_name">Search</string>
 </resources>
