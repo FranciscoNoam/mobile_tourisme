@@ -1,40 +1,61 @@
 package com.example.tourisme;
 
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.TaskStackBuilder;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
-import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.tourisme.models.TourismeModel;
 import com.example.tourisme.adapter.TourismeListAdapter;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
     private ListView listTourisme;
+    private TourismeListAdapter adapterTourisme;
+    private ArrayList<TourismeModel> originalList;
+    private ArrayList<TourismeModel> filteredList;
+
+
+    public ListView getListTourisme() {
+        return listTourisme;
+    }
+
+    public void setListTourisme(ListView listTourisme) {
+        this.listTourisme = listTourisme;
+    }
+
+    public TourismeListAdapter getAdapterTourisme() {
+        return adapterTourisme;
+    }
+
+    public void setAdapterTourisme(TourismeListAdapter adapterTourisme) {
+        this.adapterTourisme = adapterTourisme;
+    }
+
+    // List View object
+    ListView listView;
+
+    // Define array adapter for ListView
+    ArrayAdapter<String> adapter;
+
+    // Define array List for List View data
+    ArrayList<String> mylist;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,19 +71,20 @@ public class HomeActivity extends AppCompatActivity {
         tourismeArray.add(new TourismeModel("Post 5", "Lorem upsum comme description court", new Date(), ""));
         tourismeArray.add(new TourismeModel("Post 6", "Lorem upsum comme description court", new Date(), ""));
 
-        TourismeListAdapter adapterTourisme = new TourismeListAdapter(HomeActivity.this, R.layout.item_tourisme, tourismeArray);
-        this.listTourisme.setAdapter(adapterTourisme);
+        this.setAdapterTourisme(new TourismeListAdapter(HomeActivity.this, R.layout.item_tourisme, tourismeArray));
+        this.listTourisme.setAdapter(this.getAdapterTourisme());
+        this.originalList = tourismeArray;
 
         this.listTourisme.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Intent detailActivity = new Intent(HomeActivity.this, DetailHomeActivity.class);
-                detailActivity.putExtra("title_detail_home", adapterTourisme.getItem(position).getTitle());
+                detailActivity.putExtra("title_detail_home", getAdapterTourisme().getItem(position).getTitle());
                 startActivity(detailActivity);
             }
         });
 
-        adapterTourisme.setOnItemClickListener(new TourismeListAdapter.OnItemClickListener() {
+        this.getAdapterTourisme().setOnItemClickListener(new TourismeListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(TourismeModel tourisme) {
                 Intent detailActivity = new Intent(HomeActivity.this, DetailHomeActivity.class);
@@ -78,17 +100,87 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.home_menu, menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
+
+        MenuItem menuItem = menu.findItem(R.id.icon_search_home);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setQueryHint("Recherche");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (newText.isEmpty()) {
+                    setAdapterTourisme(new TourismeListAdapter(HomeActivity.this, R.layout.item_tourisme, originalList));
+                    listTourisme.setAdapter(getAdapterTourisme());
+                    listTourisme.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                            Intent detailActivity = new Intent(HomeActivity.this, DetailHomeActivity.class);
+                            detailActivity.putExtra("title_detail_home", getAdapterTourisme().getItem(position).getTitle());
+                            startActivity(detailActivity);
+                        }
+                    });
+
+                    getAdapterTourisme().setOnItemClickListener(new TourismeListAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(TourismeModel tourisme) {
+                            Intent detailActivity = new Intent(HomeActivity.this, DetailHomeActivity.class);
+                            detailActivity.putExtra("title_detail_home", tourisme.getTitle());
+                            startActivity(detailActivity);
+                        }
+                    });
+                } else {
+                    filterData(newText);
+                }
+                return true;
+            }
+        });
         return super.onCreateOptionsMenu(menu);
     }
 
+    private void filterData(String query) {
+        this.filteredList = new ArrayList<>();
+        for (TourismeModel model : originalList) {
+            if (model.getTitle().toLowerCase().contains(query.toLowerCase())) {
+                this.filteredList.add(model);
+            }
+        }
+        //adapterTourisme.clear();
+        //adapterTourisme.addAll(filteredList);
+        this.setAdapterTourisme(new TourismeListAdapter(HomeActivity.this, R.layout.item_tourisme, filteredList));
+        this.listTourisme.setAdapter(this.getAdapterTourisme());
+
+        this.listTourisme.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Intent detailActivity = new Intent(HomeActivity.this, DetailHomeActivity.class);
+                detailActivity.putExtra("title_detail_home", getAdapterTourisme().getItem(position).getTitle());
+                startActivity(detailActivity);
+            }
+        });
+
+        this.getAdapterTourisme().setOnItemClickListener(new TourismeListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(TourismeModel tourisme) {
+                Intent detailActivity = new Intent(HomeActivity.this, DetailHomeActivity.class);
+                detailActivity.putExtra("title_detail_home", tourisme.getTitle());
+                startActivity(detailActivity);
+            }
+        });
+    }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.icon_search_home:
+            /* case R.id.icon_search_home:
+               Intent intentSearch = new Intent(HomeActivity.this,SearchActivity.class);
+                startActivity(intentSearch);
                 Toast.makeText(HomeActivity.this, "Icon search selected", Toast.LENGTH_LONG).show();
-                return true;
+                return true; */
             case R.id.icon_setting_home:
                 Toast.makeText(HomeActivity.this, "Icon Configuration selected", Toast.LENGTH_LONG).show();
                 return true;
@@ -132,4 +224,5 @@ public class HomeActivity extends AppCompatActivity {
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
+
 }

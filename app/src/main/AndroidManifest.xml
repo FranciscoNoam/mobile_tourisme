@@ -12,6 +12,12 @@
         android:theme="@style/Theme.Tourisme"
         tools:targetApi="31">
         <activity
+            android:name=".SearchActivity"
+            android:exported="false"
+            android:label="@string/search_name"
+            android:parentActivityName=".HomeActivity"
+            />
+        <activity
             android:name=".DetailHomeActivity"
             android:exported="false"
             android:parentActivityName=".HomeActivity" />
@@ -25,13 +31,13 @@
             android:label="@string/signup_name"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:label="@string/login_name"
             android:name=".MainActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:label="@string/login_name" />
         <activity
-            android:label=""
             android:name=".SplashScreenActivity"
-            android:exported="true">
+            android:exported="true"
+            android:label="">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

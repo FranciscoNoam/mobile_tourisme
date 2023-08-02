@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Search view widget as item in menu -->
+    <item
+        android:id="@+id/icon_search_home"
+        android:icon="@drawable/icon_search_white"
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="ifRoom|withText"
+        android:title="TODO" />
+    <item
+        android:id="@+id/icon_setting_home"
+        android:icon="@drawable/ic_setting"
+        android:title="Configuration" />
+    <item android:id="@+id/icon_logout_home" android:title="Se déconnecter" />
+
+</menu>

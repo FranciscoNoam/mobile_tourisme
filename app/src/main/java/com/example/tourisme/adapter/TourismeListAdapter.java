@@ -104,4 +104,22 @@ public class TourismeListAdapter extends ArrayAdapter<TourismeModel> {
 
         return convertView;
     }
+
+    public void filter(String query) {
+        ArrayList<TourismeModel> filteredList = new ArrayList<>();
+        if (query.isEmpty()) {
+            filteredList.addAll(values); // Afficher toutes les données si le texte de recherche est vide
+        } else {
+            query = query.toLowerCase();
+            for (TourismeModel tourisme : values) {
+                if (tourisme.getTitle().toLowerCase().contains(query) || tourisme.getShortDescription().toLowerCase().contains(query)) {
+                    filteredList.add(tourisme);
+                }
+            }
+        }
+        clear();
+        addAll(filteredList);
+        notifyDataSetChanged();
+    }
+
 }
