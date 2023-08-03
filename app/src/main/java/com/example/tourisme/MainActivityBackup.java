@@ -3,7 +3,6 @@ package com.example.tourisme;
 import static android.view.View.*;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,38 +14,22 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.tourisme.fragment.LoginFragment;
-import com.example.tourisme.fragment.RegisterFragment;
-
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivityBackup  {
+/*
     public SharedPreferences sharedPreference;
-
-    private TextView pageLogin,pageRegister;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,new LoginFragment()).commit();
-
-
-         pageLogin = findViewById(R.id.page_singin);
-         pageRegister = findViewById(R.id.page_signup);
-
-       /* sharedPreference  = this.getSharedPreferences("app_state", Context.MODE_PRIVATE);
+        sharedPreference  = this.getSharedPreferences("app_state", Context.MODE_PRIVATE);
         Boolean isConnected = sharedPreference.getBoolean("is_authentificated",false);
         String emailSharedPreference = sharedPreference.getString("email",null);
         if(isConnected){
-           Intent intent= new Intent(MainActivity.this,HomeActivity.class);
-           intent.putExtra("email",emailSharedPreference);
-           startActivity(intent);
+            Intent intent= new Intent(MainActivityBackup.this,HomeActivity.class);
+            intent.putExtra("email",emailSharedPreference);
+            startActivity(intent);
         }
-
-        TextView pageLogin = findViewById(R.id.page_singin);
-        TextView pageRegister = findViewById(R.id.page_signup);
-
 
         EditText username = findViewById(R.id.username);
         EditText password = findViewById(R.id.password);
@@ -74,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                     connectedSharedPreference.putString("email",textUsername);
                     connectedSharedPreference.apply();
 
-                    Intent intentHomeActivity = new Intent(MainActivity.this, HomeActivity.class);
+                    Intent intentHomeActivity = new Intent(MainActivityBackup.this, HomeActivity.class);
                     intentHomeActivity.putExtra("email",textUsername);
                     startActivity(intentHomeActivity);
 
@@ -83,28 +66,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-         */
-
-        pageLogin.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                replaceFragment(new LoginFragment());
-            }
-        });
-        pageRegister.setOnClickListener(new View.OnClickListener(){
+        signup.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
-                /*Intent intentInscription = new Intent(MainActivity.this, Inscription.class);
-                startActivity(intentInscription);*/
-                replaceFragment(new RegisterFragment());
+                Intent intentInscription = new Intent(MainActivityBackup.this, Inscription.class);
+                startActivity(intentInscription);
             }
         });
 
     }
 
-    public void replaceFragment(Fragment fragment){
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,fragment).commit();
-    }
+ */
 }
