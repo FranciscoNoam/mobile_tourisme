@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -16,8 +17,10 @@ import com.example.tourisme.API.API;
 import com.example.tourisme.DetailHomeActivity;
 import com.example.tourisme.R;
 import com.example.tourisme.adapter.SiteTourismeAdapter;
+import com.example.tourisme.adapter.SousCategorieAdapter;
 import com.example.tourisme.connexion.ConnexionURL;
 import com.example.tourisme.models.SiteTourismeModel;
+import com.example.tourisme.models.SousCategorieModel;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,6 +40,9 @@ public class SiteTouristiqueFragment extends Fragment {
     private SiteTourismeAdapter adapter;
     private ArrayList<SiteTourismeModel> dataArray;
     private ArrayList<SiteTourismeModel> filteredList;
+
+    private SearchView searchView;
+    private ArrayList<SiteTourismeModel> list = new ArrayList<>();
 
     public String getSousCategoryId() {
         return sousCategory;
@@ -86,41 +92,20 @@ public class SiteTouristiqueFragment extends Fragment {
 
 
         this.setListView(this.getView().findViewById(R.id.list_tourisme));
-
-        /*ArrayList<SiteTourismeModel> tourismeArray = new ArrayList();
-        tourismeArray.add(new SiteTourismeModel("Post 1", "Lorem upsum comme description court", new Date(), ""));
-        tourismeArray.add(new SiteTourismeModel("Post 2", "Lorem upsum comme description court", new Date(), ""));
-        tourismeArray.add(new SiteTourismeModel("Post 3", "Lorem upsum comme description court", new Date(), ""));
-        tourismeArray.add(new SiteTourismeModel("Post 4", "Lorem upsum comme description court", new Date(), ""));
-        tourismeArray.add(new SiteTourismeModel("Post 5", "Lorem upsum comme description court", new Date(), ""));
-        tourismeArray.add(new SiteTourismeModel("Post 6", "Lorem upsum comme description court", new Date(), ""));
-
-        this.setAdapter(new SiteTourismeAdapter(getActivity(), R.layout.item_tourisme, tourismeArray));
-        this.getListView().setAdapter(this.getAdapter());
-        this.dataArray = tourismeArray;
-        this.filteredList = new ArrayList<>(dataArray);
-
-        this.getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        searchView = this.getView().findViewById(R.id.search_tourisme);
+        searchView.clearFocus();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Intent detailActivity = new Intent(getActivity(), DetailHomeActivity.class);
-                detailActivity.putExtra("title_detail_home", getAdapter().getItem(position).getTitle());
-                startActivity(detailActivity);
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterList(newText);
+                return true;
             }
         });
-
-
-
-         this.getAdapter().setOnItemClickListener(new SiteTourismeAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(SiteTourismeModel tourisme) {
-                Intent detailActivity = new Intent(getActivity(), DetailHomeActivity.class);
-                detailActivity.putExtra("title_detail_home", tourisme.getTitle());
-                startActivity(detailActivity);
-            }
-        });
-        registerForContextMenu(this.getListView());
-*/
 
         Bundle args = getArguments();
         if (args != null) {
@@ -141,7 +126,6 @@ public class SiteTouristiqueFragment extends Fragment {
         call.enqueue(new Callback<ArrayList<SiteTourismeModel>>() {
             @Override
             public void onResponse(Call<ArrayList<SiteTourismeModel>> call, Response<ArrayList<SiteTourismeModel>> response) {
-                ArrayList<SiteTourismeModel> list = new ArrayList<>();
 
                 if(response.code()==200){
 
@@ -174,7 +158,29 @@ public class SiteTouristiqueFragment extends Fragment {
 
     }
 
-    public void filter(String query) {
+    private void filterList(String text) {
+        ArrayList<SiteTourismeModel> listes = new ArrayList<>();
+        for (SiteTourismeModel item : list) {
+            if (item.getTitle().toLowerCase().contains(text.toLowerCase())) {
+                listes.add(item);
+            }
+        }
+        setAdapter(new SiteTourismeAdapter(getActivity(),R.layout.item_tourisme,listes));
+        getListView().setAdapter(getAdapter());
+        registerForContextMenu(getListView());
+
+        getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Intent detailActivity = new Intent(getActivity(), DetailHomeActivity.class);
+                detailActivity.putExtra("title_detail_home", getAdapter().getItem(position).getTitle());
+
+                startActivity(detailActivity);
+            }
+        });
+    }
+    /*public void filter(String query) {
         filteredList.clear();
         if(query.isEmpty()){
             this.setAdapter(new SiteTourismeAdapter(getActivity(), R.layout.item_tourisme, dataArray));
@@ -192,9 +198,7 @@ public class SiteTouristiqueFragment extends Fragment {
             adapter.setData(filteredList); // Mise à jour des données de l'adaptateur avec la liste filtrée
             adapter.notifyDataSetChanged();
         }
-
-
-    }
+    }*/
 
 
 }

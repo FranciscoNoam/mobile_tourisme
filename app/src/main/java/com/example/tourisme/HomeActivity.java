@@ -34,11 +34,11 @@ public class HomeActivity extends AppCompatActivity  implements CategorieFragmen
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_home, categorieFragment).commit();
     }
 
-    public void filterFragment(String query) {
+    /*public void filterFragment(String query) {
         if (siteTouristiqueFragment != null) {
             siteTouristiqueFragment.filter(query);
         }
-    }
+    }*/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);

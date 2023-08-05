@@ -1,21 +1,28 @@
 package com.example.tourisme.adapter;
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
+import android.content.*;
+import android.os.*;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.*;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
+import androidx.fragment.app.Fragment;
 
+import android.view.*;
+import android.widget.*;
+
+import com.example.tourisme.API.API;
+import com.example.tourisme.*;
+import com.example.tourisme.adapter.*;
+import com.example.tourisme.connexion.*;
+import com.example.tourisme.models.*;
+
+import java.util.*;
+
+import retrofit2.*;
 import java.text.SimpleDateFormat;
 
-import com.example.tourisme.R;
-import com.example.tourisme.models.SiteTourismeModel;
 
-import java.util.ArrayList;
 
 public class SiteTourismeAdapter extends ArrayAdapter<SiteTourismeModel> {
 

@@ -157,7 +157,6 @@ public class CategorieFragment extends Fragment {
          }
         }
 
-
         setAdapter(new CategorieAdapter(getActivity(),R.layout.item_categorie,listes));
         getListView().setAdapter(getAdapter());
         registerForContextMenu(getListView());
@@ -165,9 +164,7 @@ public class CategorieFragment extends Fragment {
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 categoryClickListener.onCategoryClick(getAdapter().getItem(position).getTitle(),getAdapter().getItem(position).getId());
-
             }
         });
     }
