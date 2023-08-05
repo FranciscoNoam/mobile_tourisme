@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/icon_search_home_"
         android:icon="@drawable/icon_search_white"
         android:title="Recherche"
-        app:showAsAction="ifRoom|collapseActionView" />
+        />
     <item
         android:id="@+id/icon_setting_home_"
         android:icon="@drawable/ic_setting"
         android:title="Configuration" />
     <item android:id="@+id/icon_logout_home_" android:title="Se déconnecter" />
+
 
 </menu>

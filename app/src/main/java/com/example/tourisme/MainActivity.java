@@ -1,26 +1,15 @@
 package com.example.tourisme;
 
-import static android.view.View.*;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.tourisme.fragment.LoginFragment;
-import com.example.tourisme.fragment.RegisterFragment;
+import com.example.tourisme.fragment.*;
 
 public class MainActivity extends AppCompatActivity {
-
-    public SharedPreferences sharedPreference;
 
     private TextView pageLogin,pageRegister;
 
@@ -31,60 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,new LoginFragment()).commit();
 
-
          pageLogin = findViewById(R.id.page_singin);
          pageRegister = findViewById(R.id.page_signup);
-
-       /* sharedPreference  = this.getSharedPreferences("app_state", Context.MODE_PRIVATE);
-        Boolean isConnected = sharedPreference.getBoolean("is_authentificated",false);
-        String emailSharedPreference = sharedPreference.getString("email",null);
-        if(isConnected){
-           Intent intent= new Intent(MainActivity.this,HomeActivity.class);
-           intent.putExtra("email",emailSharedPreference);
-           startActivity(intent);
-        }
-
-        TextView pageLogin = findViewById(R.id.page_singin);
-        TextView pageRegister = findViewById(R.id.page_signup);
-
-
-        EditText username = findViewById(R.id.username);
-        EditText password = findViewById(R.id.password);
-        Button connexion = findViewById(R.id.connexion);
-        TextView error = findViewById(R.id.error_login);
-        TextView signup = findViewById(R.id.page_signup);
-        connexion.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-                error.setVisibility(GONE);
-
-                String textUsername = username.getText().toString();
-                String textPassword = password.getText().toString();
-                if(textUsername.trim().isEmpty() || textPassword.trim().isEmpty()){
-                    error.setVisibility(VISIBLE);
-                    error.setText("Email ou mot de passe est incorrect");
-                } else {
-                    username.setText("");
-                    password.setText("");
-
-                    //  enregistrer le boolean connecter
-                    SharedPreferences.Editor connectedSharedPreference= sharedPreference.edit();
-                    connectedSharedPreference.putBoolean("is_authentificated",true);
-                    connectedSharedPreference.putString("email",textUsername);
-                    connectedSharedPreference.apply();
-
-                    Intent intentHomeActivity = new Intent(MainActivity.this, HomeActivity.class);
-                    intentHomeActivity.putExtra("email",textUsername);
-                    startActivity(intentHomeActivity);
-
-                    //Toast.makeText(MainActivity.this,"Email: ${textUsername} et Password: ${textPassword}",Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-
-
-         */
 
         pageLogin.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -96,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                /*Intent intentInscription = new Intent(MainActivity.this, Inscription.class);
-                startActivity(intentInscription);*/
                 replaceFragment(new RegisterFragment());
             }
         });

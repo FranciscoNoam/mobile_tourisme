@@ -1,7 +1,9 @@
 package com.example.tourisme;
 
+
 import androidx.annotation.*;
 import androidx.appcompat.app.*;
+import androidx.appcompat.widget.SearchView;
 
 import android.content.*;
 import android.os.*;
@@ -10,58 +12,35 @@ import android.widget.*;
 
 import com.example.tourisme.fragment.*;
 
-public class HomeActivity extends AppCompatActivity  implements CategorieFragment.OnCategoryClickListener, SousCategorieFragment.OnSousCategoryClickListener {
+public class AcceuilActivity extends AppCompatActivity   implements CategorieFragment.OnCategoryClickListener, SousCategorieFragment.OnSousCategoryClickListener{
+
 
     private SiteTouristiqueFragment siteTouristiqueFragment;
     private CategorieFragment categorieFragment;
 
     private String currentCategorieName;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_acceuil);
 
         loadCategorieFragment();
-       // onSousCategoryClickListener("Region ","1");
 
     } // end onCreate
 
 
     private void loadCategorieFragment() {
         CategorieFragment categorieFragment = new CategorieFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_home, categorieFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_acceuil, categorieFragment).commit();
     }
 
-    public void filterFragment(String query) {
-        if (siteTouristiqueFragment != null) {
-            siteTouristiqueFragment.filter(query);
-        }
-    }
-    @Override
+
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
 
-       /* MenuItem menuItem = menu.findItem(R.id.icon_search_home);
-        SearchView searchView = (SearchView) menuItem.getActionView();
-        searchView.setQueryHint("Recherche");
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                filterFragment(newText);
-                return true;
-            }
-        }); */
         return super.onCreateOptionsMenu(menu);
     }
-
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
@@ -72,7 +51,7 @@ public class HomeActivity extends AppCompatActivity  implements CategorieFragmen
             //    Toast.makeText(HomeActivity.this, "Icon search selected", Toast.LENGTH_LONG).show();
             //    return true;
             case R.id.icon_setting_home:
-                Toast.makeText(HomeActivity.this, "Icon Configuration selected", Toast.LENGTH_LONG).show();
+                Toast.makeText(AcceuilActivity.this, "Icon Configuration selected", Toast.LENGTH_LONG).show();
                 return true;
             case R.id.icon_logout_home:
                 showLogoutConfirmDialog();
@@ -84,13 +63,13 @@ public class HomeActivity extends AppCompatActivity  implements CategorieFragmen
     }
 
     public void showLogoutConfirmDialog(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(AcceuilActivity.this);
         builder.setTitle("Confirmation");
         builder.setMessage("Etes-vous sur de vouloir quitter l'appli ?");
         builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                SharedPreferences.Editor editor=  HomeActivity.this.getSharedPreferences("app_state", Context.MODE_PRIVATE).edit();
+                SharedPreferences.Editor editor=  AcceuilActivity.this.getSharedPreferences("app_state", Context.MODE_PRIVATE).edit();
                 editor.remove("is_authentificated").apply();
                 finish();
             }
@@ -119,14 +98,12 @@ public class HomeActivity extends AppCompatActivity  implements CategorieFragmen
         getSupportActionBar().setTitle(categoryName);
 
         SousCategorieFragment sousCategorieFragment = new SousCategorieFragment();
-        // Pass the category name to SousCategorieFragment
         Bundle bundle = new Bundle();
         bundle.putString("categoryName", categoryName);
         bundle.putString("categoryId", id);
         sousCategorieFragment.setArguments(bundle);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_home, sousCategorieFragment).addToBackStack(null).commit();
-       // currentCategorieName = categoryName;
 
     }
 
@@ -135,15 +112,13 @@ public class HomeActivity extends AppCompatActivity  implements CategorieFragmen
     public void onSousCategoryClick(String categoryName, String id) {
         getSupportActionBar().setTitle(categoryName);
 
-        System.out.println("Tonga click name: "+categoryName+"  id: "+id);
         SiteTouristiqueFragment siteTouristique = new SiteTouristiqueFragment();
-        // Pass the category name to SousCategorieFragment
         Bundle bundle = new Bundle();
         bundle.putString("sousCategoryName", categoryName);
         bundle.putString("sousCategoryId", id);
         siteTouristique.setArguments(bundle);
 
-          getSupportFragmentManager().beginTransaction().replace(R.id.frame_home, siteTouristique).addToBackStack(null).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_home, siteTouristique).addToBackStack(null).commit();
 
     }
 }

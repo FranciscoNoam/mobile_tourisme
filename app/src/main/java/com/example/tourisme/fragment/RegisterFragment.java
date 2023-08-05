@@ -2,6 +2,7 @@ package com.example.tourisme.fragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -14,11 +15,20 @@ import com.example.tourisme.R;
 public class RegisterFragment extends Fragment {
     private View view;
 
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        view= inflater.inflate(R.layout.fragment_register, container, false);
+    public View getView() {
         return view;
+    }
+
+    public void setView(View view) {
+        this.view = view;
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+        this.setView(inflater.inflate(R.layout.fragment_register, container, false));
+
+        return this.getView();
     }
 }
