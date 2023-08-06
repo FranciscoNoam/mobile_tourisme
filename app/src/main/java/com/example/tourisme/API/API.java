@@ -11,8 +11,10 @@ import retrofit2.http.*;
 public interface API {
     //+++++++++++++++++++ API Client +++++++++++++++
 
-    @POST("/api/register")
-    Call<UserModel> registre(@Body UserModel user);
+    @POST("/api/registre/client")
+    Call<UserModel> registreClient(@Body UserModel user);
+    @PUT("/api/update/client/{id}")
+    Call<UserModel> updateClient(@Path("id") String id,@Body UserModel user);
 
     @POST("/api/auth/login")
     Call<UserModel> login(@Body HashMap<String,String> user);
@@ -28,5 +30,8 @@ public interface API {
     //+++++++++++++++++++ API  Site touristique ++++++++++
     @GET("/api/site-touristique/{id}")
     Call<ArrayList<SiteTourismeModel>> findSiteTouristique(@Path("id") String id);
+
+    @GET("/api/detail-site-touristique/{id}")
+    Call<ArrayList<DetailModel>> findDetailSiteTouristique(@Path("id") String id);
 
 }

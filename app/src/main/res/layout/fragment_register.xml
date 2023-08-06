@@ -29,6 +29,7 @@
                 style="@style/parent"
                 android:layout_marginTop="@dimen/signup_text_margin_top">
                 <EditText
+                    android:id="@+id/name_registre"
                     style="@style/modifiedEditText"
                     android:inputType="text"
                     android:maxLines="1"
@@ -40,6 +41,7 @@
                 style="@style/parent"
                 android:layout_marginTop="@dimen/signup_text_margin_top">
                 <EditText
+                    android:id="@+id/email_registre"
                     style="@style/modifiedEditText"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
@@ -50,6 +52,7 @@
                 style="@style/parent"
                 android:layout_marginTop="@dimen/signup_text_margin_top">
                 <EditText
+                    android:id="@+id/password_registre"
                     style="@style/modifiedEditText"
                     android:hint="@string/login_password_hint"
                     android:maxLines="1"
@@ -57,12 +60,12 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-
+                android:id="@+id/btn_registre"
                 style="@style/loginButton"
                 android:layout_gravity="center"
                 android:text="Register" />
             <TextView
-                android:id="@+id/error_isncription"
+                android:id="@+id/error_registre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Email ou mot de passe est incorrect"

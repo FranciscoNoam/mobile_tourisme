@@ -18,12 +18,17 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".DetailActiviy"
+            android:exported="false"
+            android:parentActivityName=".AcceuilActivity"
+            android:theme="@style/Theme.Tourisme"
+            />
+        <activity
             android:name=".ProfileActivity"
+            android:configChanges="uiMode"
             android:exported="false"
             android:label="@string/profile_name"
-            android:parentActivityName=".PreferenceActivity"
-            android:configChanges="uiMode"
-            />
+            android:parentActivityName=".PreferenceActivity" />
         <activity
             android:name=".PreferenceActivity"
             android:exported="false"

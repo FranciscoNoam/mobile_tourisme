@@ -104,9 +104,10 @@ public class LoginFragment extends Fragment {
 
                                     SharedPreferences.Editor connectedSharedPreference= sharedPreference.edit();
                                     connectedSharedPreference.putBoolean("is_authentificated",true);
+                                    connectedSharedPreference.putString("id",tmp.get_id());
                                     connectedSharedPreference.putString("email",textUsername);
                                     connectedSharedPreference.putString("name",tmp.getName());
-                                connectedSharedPreference.putString("password",textPassword);
+                                    connectedSharedPreference.putString("password",textPassword);
                                     connectedSharedPreference.apply();
 
 

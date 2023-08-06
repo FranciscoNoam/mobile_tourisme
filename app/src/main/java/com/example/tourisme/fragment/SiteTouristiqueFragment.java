@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.tourisme.API.API;
+import com.example.tourisme.DetailActiviy;
 import com.example.tourisme.DetailHomeActivity;
 import com.example.tourisme.R;
 import com.example.tourisme.adapter.SiteTourismeAdapter;
@@ -140,8 +141,12 @@ public class SiteTouristiqueFragment extends Fragment {
                         @Override
 
                         public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                            Intent detailActivity = new Intent(getActivity(), DetailHomeActivity.class);
-                            detailActivity.putExtra("title_detail_home", getAdapter().getItem(position).getTitle());
+                           // Intent detailActivity = new Intent(getActivity(), DetailHomeActivity.class);
+                            // detailActivity.putExtra("title_detail_home", getAdapter().getItem(position).getTitle());
+
+                            Intent detailActivity = new Intent(getActivity(), DetailActiviy.class);
+                            detailActivity.putExtra("title_detail_site", getAdapter().getItem(position).getTitle());
+                            detailActivity.putExtra("id_detail_site", getAdapter().getItem(position).getId());
 
                             startActivity(detailActivity);
                         }

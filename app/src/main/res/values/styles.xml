@@ -3,9 +3,9 @@
     <!-- Le thème de l'application -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Couleur de la barre d'application -->
-        <item name="colorPrimary">@color/purple_700</item>
-        <item name="colorPrimaryDark">@color/purple_700</item>
-        <item name="colorAccent">@color/design_default_color_primary</item>
+        <item name="colorPrimary">@color/primaryTextColor</item>
+        <!--<item name="colorPrimaryDark">@color/purple_700</item>-->
+        <item name="colorAccent">@color/primaryTextColor</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

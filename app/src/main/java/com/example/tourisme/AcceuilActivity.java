@@ -37,14 +37,17 @@ public class AcceuilActivity extends AppCompatActivity   implements CategorieFra
             setTheme(R.style.AppTheme);
         }
         String tmp = getIntent().getStringExtra("name");
-        System.out.println("tonga eto: "+tmp);
-
+        String tmp2 = getIntent().getStringExtra("name_registre");
+        String tmp3 = getIntent().getStringExtra("update");
         setContentView(R.layout.activity_acceuil);
 
         new AppNotification().createNotificationChannels(this);
 
 
         showNotification(tmp);
+        showNotificationRegsitre(tmp2);
+        showNotificationUpdate(tmp3);
+
         loadCategorieFragment();
 
     } // end onCreate
@@ -76,6 +79,66 @@ public class AcceuilActivity extends AppCompatActivity   implements CategorieFra
             NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
 
             notificationManager.notify(1, builder.build());
+        }
+
+    }
+
+    private void showNotificationRegsitre(String name_) {
+        sharedPreference  = this.getSharedPreferences("app_state", Context.MODE_PRIVATE);
+
+        String name = sharedPreference.getString("name",null);
+
+        if(name_!=null){
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "channel1")
+                    .setSmallIcon(R.drawable.ic_notification)
+                    .setContentTitle("Inscription terminer ")
+                    .setContentText("Bienvenu Sur la  l'application "+name_)
+                    .setPriority(NotificationCompat.PRIORITY_HIGH)
+                    .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                    .setAutoCancel(true);
+
+            Intent intent = new Intent(this, AcceuilActivity.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(
+                    this,
+                    0,
+                    intent,
+                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE // Utilisez FLAG_IMMUTABLE ici
+            );
+
+            builder.setContentIntent(pendingIntent);
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+
+            notificationManager.notify(2, builder.build());
+        }
+
+    }
+
+    private void showNotificationUpdate(String name_) {
+        sharedPreference  = this.getSharedPreferences("app_state", Context.MODE_PRIVATE);
+
+        String name = sharedPreference.getString("name",null);
+
+        if(name_!=null){
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "channel2")
+                    .setSmallIcon(R.drawable.ic_notification)
+                    .setContentTitle("Mise à jour des informations")
+                    .setContentText("Votre mise à jour des informations sont terminer "+name_)
+                    .setPriority(NotificationCompat.PRIORITY_HIGH)
+                    .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                    .setAutoCancel(true);
+
+            Intent intent = new Intent(this, AcceuilActivity.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(
+                    this,
+                    0,
+                    intent,
+                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE // Utilisez FLAG_IMMUTABLE ici
+            );
+
+            builder.setContentIntent(pendingIntent);
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+
+            notificationManager.notify(2, builder.build());
         }
 
     }
@@ -112,7 +175,6 @@ public class AcceuilActivity extends AppCompatActivity   implements CategorieFra
         switch (item.getItemId()) {
 
             case R.id.icon_setting_home:
-               // Toast.makeText(AcceuilActivity.this, "Icon Configuration selected OKKKKK", Toast.LENGTH_LONG).show();
                 Intent intentSearch = new Intent(AcceuilActivity.this,PreferenceActivity.class);
                 startActivity(intentSearch);
                 return true;
@@ -133,7 +195,15 @@ public class AcceuilActivity extends AppCompatActivity   implements CategorieFra
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 SharedPreferences.Editor editor=  AcceuilActivity.this.getSharedPreferences("app_state", Context.MODE_PRIVATE).edit();
-                editor.remove("is_authentificated").apply();
+                editor.remove("is_authentificated");
+                editor.remove("id");
+                editor.remove("name");
+                editor.remove("email");
+                editor.remove("password");
+                editor.remove("name_registre");
+                editor.remove("update");
+                        editor.apply();
+
                 finish();
             }
         });

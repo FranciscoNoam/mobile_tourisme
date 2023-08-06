@@ -45,7 +45,7 @@ public class PreferenceActivity extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp(){
         //onBackPressed();
-        Intent intentSearch = new Intent(PreferenceActivity.this,AcceuilActivity.class);
+        Intent intentSearch = new Intent(PreferenceActivity.this,MainActivity.class);
         startActivity(intentSearch);
 
         return true;
