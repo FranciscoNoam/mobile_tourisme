@@ -1,15 +1,19 @@
 <resources>
-    <string name="app_name">Tourisme</string>
+    <string name="app_name">Cite Touristique</string>
     <string name="login_name">Bienvenu sur Tourisme</string>
     <string name="signup_name">Inscription sur Tourisme</string>
     <string name="home_name">Acceuil</string>
     <string name="search_name">Search</string>
+    <string name="setting_name">Préferences</string>
+    <string name="profile_name">Mes informations</string>
 
-    <string name="register">REGISTER</string>
+    <string name="text_login_name">AUTHENTIFICATION</string>
+    <string name="register">INSCRIPTION</string>
     <string name="login_email_hint">Email</string>
-    <string name="login_password_hint">Password</string>
-    <string name="signup_login_hint"> account?</string>
-    <string name="login_signup_hint">Sign Up</string>
+    <string name="name_hint">Nom complet</string>
+    <string name="login_password_hint">Mot de passe</string>
+    <string name="signup_login_hint"> Connexion</string>
+    <string name="login_signup_hint">Vous avez de compte?</string>
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
     <string name="sync_header">Sync</string>

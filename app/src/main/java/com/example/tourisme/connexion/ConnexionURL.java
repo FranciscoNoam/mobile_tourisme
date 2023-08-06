@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ConnexionURL {
     //private   String BASE_URL="http://10.0.2.2:8080";
-    private String BASE_URL = "https://d8e2-154-120-142-77.ngrok-free.app";
+    private String BASE_URL = "https://96ae-154-120-142-77.ngrok-free.app";
     private Retrofit retrofit;
     private API api;
 

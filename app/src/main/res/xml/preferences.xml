@@ -6,14 +6,12 @@
         <SwitchPreference
             android:key="theme_preference"
             android:defaultValue="false"
-            android:title="Dark theme"
-            android:summary="Enable dark theme for the app"
+            android:title="Thème sombre"
+            android:summary="Activer le thème sombre pour l'application"
             />
-        <!--<Preference
-            android:key="import_preference"
-            android:summary="Import Database"
-            android:title="Import"
-            />
+
+
+        <!--
         <Preference
             android:key="export_preference"
             android:summary="Export Database"
@@ -21,15 +19,34 @@
             />-->
     </PreferenceCategory>
     <PreferenceCategory
-        android:title="About"
+        android:title="À propos de moi"
+        >
+        <Preference
+            android:key="profile_preference"
+            android:summary="Mes informations"
+            android:title="Mon profile"
+            />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="À propos"
         >
         <Preference
             android:title="Version"
             android:summary="1.0.0"
             />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="À propos de nous"
+        >
         <Preference
-            android:key="contact_preference"
-            android:title="About Us"
+            android:summary="ETU000876"
+            android:title="ANTOENJARA Noam Francisco"
+            />
+        <Preference
+            android:title="HERINIANA Roger Nico"
+            android:summary="1010"
             />
     </PreferenceCategory>
 </PreferenceScreen>

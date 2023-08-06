@@ -1,18 +1,24 @@
 package com.example.tourisme.fragment;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
+import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.example.tourisme.AcceuilActivity;
+import com.example.tourisme.PreferenceActivity;
+import com.example.tourisme.ProfileActivity;
 import com.example.tourisme.R;
 
 public class PreferenceFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -48,6 +54,19 @@ public class PreferenceFragment extends PreferenceFragmentCompat implements Shar
             // Redémarrez votre activité ou votre application pour appliquer le thème
             getActivity().recreate();
         }
+    }
+
+
+    @Override
+    public boolean onPreferenceTreeClick(Preference preference) {
+        String key = preference.getKey();
+        if ("profile_preference".equals(key)) {
+            // Lancer l'activité de profil
+            Intent intent = new Intent(getActivity(), ProfileActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onPreferenceTreeClick(preference);
     }
 
     @Override

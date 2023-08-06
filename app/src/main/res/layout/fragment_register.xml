@@ -32,18 +32,9 @@
                     style="@style/modifiedEditText"
                     android:inputType="text"
                     android:maxLines="1"
-                    android:hint="Name"/>
+                    android:hint="@string/name_hint"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/parent"
-                android:layout_marginTop="@dimen/signup_text_margin_top">
-                <EditText
-                    style="@style/modifiedEditText"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:hint="Mobile Number"/>
-            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/parent"
@@ -70,7 +61,14 @@
                 style="@style/loginButton"
                 android:layout_gravity="center"
                 android:text="Register" />
-
+            <TextView
+                android:id="@+id/error_isncription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email ou mot de passe est incorrect"
+                android:textColor="@color/error"
+                android:textSize="14sp"
+                android:visibility="gone" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </FrameLayout>

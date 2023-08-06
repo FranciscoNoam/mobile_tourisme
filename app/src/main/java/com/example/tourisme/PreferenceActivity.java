@@ -31,19 +31,6 @@ public class PreferenceActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_setting, new PreferenceFragment()).commit();
 
-        /*ActionBar menu = getSupportActionBar();
-        menu.setDisplayShowHomeEnabled(true);
-        menu.setDisplayHomeAsUpEnabled(true);
-
-
-        menu.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Effectuez la navigation vers votre activité d'accueil
-                Intent intent = new Intent(PreferenceActivity.this, AcceuilActivity.class);
-                startActivity(intent);
-            }
-        });*/
 
 
     }
