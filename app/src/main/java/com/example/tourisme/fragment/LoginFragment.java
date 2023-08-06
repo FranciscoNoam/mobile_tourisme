@@ -52,7 +52,7 @@ public class LoginFragment extends Fragment {
         Boolean isConnected = sharedPreference.getBoolean("is_authentificated",false);
         String emailSharedPreference = sharedPreference.getString("email",null);
         if(isConnected){
-            Intent intent= new Intent(getActivity(), HomeActivity.class);
+            Intent intent= new Intent(getActivity(), AcceuilActivity.class);
             intent.putExtra("email",emailSharedPreference);
             startActivity(intent);
         }
@@ -131,7 +131,7 @@ public class LoginFragment extends Fragment {
         Boolean isConnected = sharedPreference.getBoolean("is_authentificated",false);
         String emailSharedPreference = sharedPreference.getString("email",null);
         if(isConnected){
-            Intent intent= new Intent(getActivity(), HomeActivity.class);
+            Intent intent= new Intent(getActivity(), AcceuilActivity.class);
             intent.putExtra("email",emailSharedPreference);
             startActivity(intent);
         }
@@ -166,7 +166,7 @@ public class LoginFragment extends Fragment {
                     connectedSharedPreference.putString("email",textUsername);
                     connectedSharedPreference.apply();
 
-                    Intent intentHomeActivity = new Intent(getActivity(), HomeActivity.class);
+                    Intent intentHomeActivity = new Intent(getActivity(), AcceuilActivity.class);
                     intentHomeActivity.putExtra("email",textUsername);
                     startActivity(intentHomeActivity);
 

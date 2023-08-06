@@ -4,6 +4,7 @@ package com.example.tourisme;
 import androidx.annotation.*;
 import androidx.appcompat.app.*;
 import androidx.appcompat.widget.SearchView;
+import androidx.preference.PreferenceManager;
 
 import android.content.*;
 import android.os.*;
@@ -23,6 +24,19 @@ public class AcceuilActivity extends AppCompatActivity   implements CategorieFra
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean isDarkThemeEnabled = sharedPreferences.getBoolean("theme_preference", false);
+
+        // Appliquez le thème approprié en fonction de la préférence
+        if (isDarkThemeEnabled) {
+            setTheme(R.style.AppTheme_Dark);
+        } else {
+            setTheme(R.style.AppTheme);
+        }
+
+
         setContentView(R.layout.activity_acceuil);
 
         loadCategorieFragment();
@@ -51,7 +65,9 @@ public class AcceuilActivity extends AppCompatActivity   implements CategorieFra
             //    Toast.makeText(HomeActivity.this, "Icon search selected", Toast.LENGTH_LONG).show();
             //    return true;
             case R.id.icon_setting_home:
-                Toast.makeText(AcceuilActivity.this, "Icon Configuration selected", Toast.LENGTH_LONG).show();
+               // Toast.makeText(AcceuilActivity.this, "Icon Configuration selected OKKKKK", Toast.LENGTH_LONG).show();
+                Intent intentSearch = new Intent(AcceuilActivity.this,PreferenceActivity.class);
+                startActivity(intentSearch);
                 return true;
             case R.id.icon_logout_home:
                 showLogoutConfirmDialog();
@@ -103,7 +119,7 @@ public class AcceuilActivity extends AppCompatActivity   implements CategorieFra
         bundle.putString("categoryId", id);
         sousCategorieFragment.setArguments(bundle);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_home, sousCategorieFragment).addToBackStack(null).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_acceuil, sousCategorieFragment).addToBackStack(null).commit();
 
     }
 
@@ -118,7 +134,7 @@ public class AcceuilActivity extends AppCompatActivity   implements CategorieFra
         bundle.putString("sousCategoryId", id);
         siteTouristique.setArguments(bundle);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_home, siteTouristique).addToBackStack(null).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_acceuil, siteTouristique).addToBackStack(null).commit();
 
     }
 }

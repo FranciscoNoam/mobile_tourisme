@@ -16,24 +16,32 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".AcceuilActivity"
-            android:exported="false" />
+            android:name=".PreferenceActivity"
+            android:exported="false"
+            android:parentActivityName=".AcceuilActivity"
+            />
         <activity
             android:name=".DetailHomeActivity"
             android:exported="false"
-            android:parentActivityName=".HomeActivity" />
+            android:parentActivityName=".AcceuilActivity"
+            />
         <activity
-            android:name=".HomeActivity"
+            android:name=".AcceuilActivity"
             android:exported="false"
-            android:label="@string/home_name" />
+            android:configChanges="uiMode"
+            />
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/login_name" />
+            android:label="@string/login_name"
+            android:configChanges="uiMode"
+            />
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:configChanges="uiMode"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
