@@ -11,7 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.bumptech.glide.Glide;
 import com.example.tourisme.R;
+import com.example.tourisme.connexion.ConnexionURL;
 import com.example.tourisme.models.CategorieModel;
 
 import java.util.ArrayList;
@@ -70,10 +72,10 @@ public class CategorieAdapter extends ArrayAdapter<CategorieModel> {
 
         title.setText(txttitle);
         description.setText(txtdescription);
-    /*    Glide.with(convertView)
-                .load(txturl_image)
+        Glide.with(convertView)
+                .load(new ConnexionURL().getBaseUrl()+txturl_image)
                 .into(image);
-*/
+
 
         return convertView;
     }

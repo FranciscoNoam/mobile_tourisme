@@ -14,7 +14,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import com.bumptech.glide.Glide;
 import com.example.tourisme.R;
+import com.example.tourisme.connexion.ConnexionURL;
 import com.example.tourisme.fragment.CategorieFragment;
 import com.example.tourisme.models.CategorieModel;
 import com.example.tourisme.models.SousCategorieModel;
@@ -76,10 +78,9 @@ public class SousCategorieAdapter extends ArrayAdapter<SousCategorieModel> {
 
         title.setText(txttitle);
         description.setText(txtdescription);
-        /*Glide.with(convertView)
-                .load(txturl_image)
-                .into(image);*/
-
+        Glide.with(convertView)
+                .load(new ConnexionURL().getBaseUrl()+txturl_image)
+                .into(image);
 
         return convertView;
     }

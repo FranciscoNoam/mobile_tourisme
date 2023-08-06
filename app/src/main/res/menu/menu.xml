@@ -12,7 +12,7 @@
     <item
         android:id="@+id/icon_setting_home"
         android:icon="@drawable/ic_setting"
-        android:title="Configuration" />
+        android:title="Préferences" />
     <item android:id="@+id/icon_logout_home" android:title="Se déconnecter" />
 
 </menu>

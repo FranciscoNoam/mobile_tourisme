@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import android.view.*;
 import android.widget.*;
 
+import com.bumptech.glide.Glide;
 import com.example.tourisme.API.API;
 import com.example.tourisme.*;
 import com.example.tourisme.adapter.*;
@@ -90,10 +91,13 @@ public class SiteTourismeAdapter extends ArrayAdapter<SiteTourismeModel> {
         TextView title_detail = convertView.findViewById(R.id.title_detail_list);
         TextView date_detail = convertView.findViewById(R.id.date_detail_list);
         TextView description_detail = convertView.findViewById(R.id.description_detail_list);
-
+        ImageView image = convertView.findViewById(R.id.image_detail_list);
         title_detail.setText(tourisme_title);
         date_detail.setText(tourisme_date);
         description_detail.setText(tourisme_description);
+        Glide.with(convertView)
+                .load(new ConnexionURL().getBaseUrl()+tourisme_url_image)
+                .into(image);
 
        /* convertView.setOnClickListener(new View.OnClickListener() {
             @Override

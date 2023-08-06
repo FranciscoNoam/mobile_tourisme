@@ -6,12 +6,54 @@
     android:layout_height="match_parent"
     tools:context=".DetailHomeActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="168dp"
-        tools:layout_editor_absoluteY="312dp"
-        tools:ignore="MissingConstraints" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="18dp"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/logo"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="10dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/login_name"
+            style="@style/headerTextPrimary"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="dsdcdcscdcsdcscdcdscsdcdscdcsdcsdcdcdcdscvevevevzveezvevzvevvevezvezvevzvzevevezvevzevezv"
+            android:layout_marginBottom="10dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Titre de description"
+            style="@style/headerTextPrimary"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="dsdcdcscdcsddccsdcsdcscdcsdcsdcscdcdscdcdscsdsdccscdcdscsdcdscdcsdcsdcdcdcdscvevevevzveezvevzvevvevezvezvevzvzevevezvevzevezv"
+            android:layout_marginBottom="10dp"
+            />
+        <VideoView
+            android:id="@+id/video_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:visibility="gone"
+            />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
