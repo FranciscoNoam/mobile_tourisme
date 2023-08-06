@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AcceuilActivity">
+    tools:context=".SettingActivity">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         style="@style/parent"
         >
-    <FrameLayout
-        android:id="@+id/frame_acceuil"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        <FrameLayout
+            android:id="@+id/frame_setting"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

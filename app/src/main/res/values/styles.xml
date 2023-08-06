@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/purple_700</item>
         <item name="colorPrimaryDark">@color/purple_700</item>
         <item name="colorAccent">@color/design_default_color_primary</item>
+        <!--<item name="perferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>-->
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -57,4 +58,5 @@
         <item name="android:textColor">@color/whiteTextColor</item>
         <item name="android:textStyle">bold</item>
     </style>
+
 </resources>

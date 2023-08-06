@@ -1,7 +1,9 @@
 package com.example.tourisme;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +14,16 @@ public class DetailHomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    /*    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean isDarkThemeEnabled = sharedPreferences.getBoolean("theme_preference", false);
+
+        // Appliquez le thème approprié en fonction de la préférence
+        if (isDarkThemeEnabled) {
+            setTheme(R.style.AppTheme_Dark);
+        } else {
+            setTheme(R.style.AppTheme);
+        }
+*/
         setContentView(R.layout.activity_detail_home);
 
         String title = getIntent().getStringExtra("title_detail_home");

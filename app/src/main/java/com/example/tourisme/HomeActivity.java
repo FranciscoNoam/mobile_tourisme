@@ -2,6 +2,7 @@ package com.example.tourisme;
 
 import androidx.annotation.*;
 import androidx.appcompat.app.*;
+import androidx.preference.PreferenceManager;
 
 import android.content.*;
 import android.os.*;
@@ -21,6 +22,16 @@ public class HomeActivity extends AppCompatActivity  implements CategorieFragmen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+       /* SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean isDarkThemeEnabled = sharedPreferences.getBoolean("theme_preference", false);
+
+        // Appliquez le thème approprié en fonction de la préférence
+        if (isDarkThemeEnabled) {
+            setTheme(R.style.AppTheme_Dark);
+        } else {
+            setTheme(R.style.AppTheme);
+        }
+*/
         setContentView(R.layout.activity_home);
 
         loadCategorieFragment();

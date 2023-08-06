@@ -4,6 +4,7 @@
     <string name="signup_name">Inscription sur Tourisme</string>
     <string name="home_name">Acceuil</string>
     <string name="search_name">Search</string>
+    <string name="setting_name">Préferences</string>
 
     <string name="register">REGISTER</string>
     <string name="login_email_hint">Email</string>
