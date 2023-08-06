@@ -35,10 +35,6 @@
             android:label="@string/setting_name"
             android:parentActivityName=".AcceuilActivity" />
         <activity
-            android:name=".DetailHomeActivity"
-            android:exported="false"
-            android:parentActivityName=".AcceuilActivity" />
-        <activity
             android:name=".AcceuilActivity"
             android:configChanges="uiMode"
             android:exported="false" />

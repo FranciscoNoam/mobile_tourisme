@@ -15,16 +15,12 @@ import android.widget.ListView;
 
 import com.example.tourisme.API.API;
 import com.example.tourisme.DetailActiviy;
-import com.example.tourisme.DetailHomeActivity;
 import com.example.tourisme.R;
 import com.example.tourisme.adapter.SiteTourismeAdapter;
-import com.example.tourisme.adapter.SousCategorieAdapter;
 import com.example.tourisme.connexion.ConnexionURL;
 import com.example.tourisme.models.SiteTourismeModel;
-import com.example.tourisme.models.SousCategorieModel;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -141,11 +137,11 @@ public class SiteTouristiqueFragment extends Fragment {
                         @Override
 
                         public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                           // Intent detailActivity = new Intent(getActivity(), DetailHomeActivity.class);
-                            // detailActivity.putExtra("title_detail_home", getAdapter().getItem(position).getTitle());
 
                             Intent detailActivity = new Intent(getActivity(), DetailActiviy.class);
                             detailActivity.putExtra("title_detail_site", getAdapter().getItem(position).getTitle());
+                            detailActivity.putExtra("description_detail_site", getAdapter().getItem(position).getDescription());
+                            detailActivity.putExtra("image_detail_site", getAdapter().getItem(position).getImage());
                             detailActivity.putExtra("id_detail_site", getAdapter().getItem(position).getId());
 
                             startActivity(detailActivity);
@@ -178,32 +174,12 @@ public class SiteTouristiqueFragment extends Fragment {
             @Override
 
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Intent detailActivity = new Intent(getActivity(), DetailHomeActivity.class);
+                Intent detailActivity = new Intent(getActivity(), DetailActiviy.class);
                 detailActivity.putExtra("title_detail_home", getAdapter().getItem(position).getTitle());
 
                 startActivity(detailActivity);
             }
         });
     }
-    /*public void filter(String query) {
-        filteredList.clear();
-        if(query.isEmpty()){
-            this.setAdapter(new SiteTourismeAdapter(getActivity(), R.layout.item_tourisme, dataArray));
-            this.getListView().setAdapter(this.getAdapter());
-
-            adapter.setData(dataArray); // Mise à jour des données de l'adaptateur avec la liste filtrée
-            adapter.notifyDataSetChanged();
-        } else {
-            for (SiteTourismeModel model : dataArray) {
-                if (model.getTitle().toLowerCase().contains(query.toLowerCase())) {
-                    filteredList.add(model);
-                }
-            }
-
-            adapter.setData(filteredList); // Mise à jour des données de l'adaptateur avec la liste filtrée
-            adapter.notifyDataSetChanged();
-        }
-    }*/
-
 
 }

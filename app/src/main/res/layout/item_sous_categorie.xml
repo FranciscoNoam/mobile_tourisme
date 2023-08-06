@@ -4,7 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center"
+    >
 
     <androidx.cardview.widget.CardView
         style="@style/loginCard"
@@ -14,9 +16,8 @@
         android:layout_marginTop="@dimen/loginViewsMargin"
         android:layout_marginBottom="@dimen/loginViewsMargin"
         android:background="@color/whiteCardColor"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:ignore="MissingConstraints">
+        android:layout_width="260dp"
+        android:layout_height="260dp">
 
 
         <FrameLayout
@@ -27,7 +28,7 @@
             <ImageView
                 android:id="@+id/image_sous_categorie"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="match_parent"
                 android:scaleType="center"
                 app:srcCompat="@drawable/logo"
                 />

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Cite Touristique</string>
     <string name="login_name">Bienvenu sur Tourisme</string>
     <string name="signup_name">Inscription sur Tourisme</string>
@@ -13,6 +13,7 @@
     <string name="name_hint">Nom complet</string>
     <string name="login_password_hint">Mot de passe</string>
     <string name="signup_login_hint"> Connexion</string>
+    <string name="signin_login_hint" > S\'inscrire?</string>
     <string name="login_signup_hint">Vous avez de compte?</string>
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>

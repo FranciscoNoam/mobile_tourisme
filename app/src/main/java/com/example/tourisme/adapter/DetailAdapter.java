@@ -75,7 +75,6 @@ public class DetailAdapter extends ArrayAdapter<DetailModel> {
         ImageView image = convertView.findViewById(R.id.image_detail_description);
         VideoView video = convertView.findViewById(R.id.video_detail_description);
 
-System.out.println("tonga zay: "+txttitle+" , "+txtdescription+" , "+txturl_image+" , "+new ConnexionURL().getBaseUrl()+txt_video);
         title.setText(txttitle);
         descriptionShort.loadData(txtdescription, "text/html", "UTF-8");
         descriptionShort.setWebViewClient(new WebViewClient());
