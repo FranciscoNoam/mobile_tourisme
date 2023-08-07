@@ -20,6 +20,7 @@ import com.example.tourisme.AcceuilActivity;
 import com.example.tourisme.R;
 import com.example.tourisme.connexion.ConnexionURL;
 import com.example.tourisme.models.UserModel;
+import com.example.tourisme.notification.PopupNotification;
 
 import java.util.HashMap;
 
@@ -29,6 +30,7 @@ import retrofit2.Response;
 
 
 public class RegisterFragment extends Fragment {
+    private PopupNotification popupNotification;
     private View view;
     private ConnexionURL connexion;
     private API axios;
@@ -57,6 +59,7 @@ public class RegisterFragment extends Fragment {
         this.setView(inflater.inflate(R.layout.fragment_register, container, false));
 
         sharedPreference  = getActivity().getSharedPreferences("app_state", Context.MODE_PRIVATE);
+        popupNotification = new PopupNotification(getActivity());
 
         Boolean isConnected = sharedPreference.getBoolean("is_authentificated",false);
         String emailSharedPreference = sharedPreference.getString("email",null);
@@ -79,12 +82,16 @@ public class RegisterFragment extends Fragment {
             public void onClick(View view) {
                 error.setVisibility(getView().GONE);
 
+                popupNotification.showLoadingPopup();
+
                 String textName = name.getText().toString();
                 String textUsername = email.getText().toString();
                 String textPassword = password.getText().toString();
                 if(textName.trim().isEmpty() || textUsername.trim().isEmpty() || textPassword.trim().isEmpty()){
                     error.setVisibility(getView().VISIBLE);
                     error.setText("Champs invalides");
+                    popupNotification.hideLoadingPopup();
+
                 } else {
                     name.setText("");
                     email.setText("");
@@ -125,18 +132,18 @@ public class RegisterFragment extends Fragment {
 
                             } else {
                                 error.setVisibility(getView().VISIBLE);
-                                error.setText("Erreur de connection");
+                                error.setText("L'une de ses données ne sont pas valides");
                             }
+                            popupNotification.hideLoadingPopup();
 
                         }
 
                         @Override
                         public void onFailure(Call<UserModel> call, Throwable t) {
                             error.setVisibility(getView().VISIBLE);
-                            error.setText("Champs invalides");
+                            error.setText("Erreur de connexion");
 
-                            System.out.println("tonga Erreur");
-                            System.out.println(t.getMessage());
+                            popupNotification.hideLoadingPopup();
                         }
                     });
                 }

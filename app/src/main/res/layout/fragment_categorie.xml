@@ -20,7 +20,15 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="0dp"
             app:queryHint="Recherche par categorie" />
-
+        <TextView
+            android:id="@+id/error_newtWork_categorie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Erreur de connexion"
+            android:layout_gravity="center"
+            android:textColor="@color/error"
+            android:textSize="14sp"
+            android:visibility="gone" />
         <ListView
             android:id="@+id/list_categorie"
             android:layout_width="match_parent"

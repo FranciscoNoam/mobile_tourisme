@@ -15,14 +15,16 @@ import android.widget.*;
 import com.example.tourisme.API.API;
 import com.example.tourisme.connexion.ConnexionURL;
 import com.example.tourisme.models.UserModel;
+import com.example.tourisme.notification.PopupNotification;
 
 import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
+import android.app.ProgressDialog;
 public class ProfileActivity extends AppCompatActivity {
+    private PopupNotification popupNotification;
     public SharedPreferences sharedPreference;
     private ConnexionURL connexion;
     private API axios;
@@ -48,10 +50,9 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         setContentView(R.layout.activity_profile);
-
         sharedPreference  = this.getSharedPreferences("app_state", Context.MODE_PRIVATE);
+        popupNotification = new PopupNotification(this);
 
-        Boolean isConnected = sharedPreference.getBoolean("is_authentificated",false);
         String name_ = sharedPreference.getString("name",null);
         String email_ = sharedPreference.getString("email",null);
         String password_ = sharedPreference.getString("password",null);
@@ -71,6 +72,7 @@ public class ProfileActivity extends AppCompatActivity {
         change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                popupNotification.showLoadingPopup();
 
                 EditText name = findViewById(R.id.name_profile);
                 EditText email = findViewById(R.id.email_profile);
@@ -83,8 +85,11 @@ public class ProfileActivity extends AppCompatActivity {
                 if(textName.trim().isEmpty() || textEmail.trim().isEmpty()){
                     error.setVisibility(VISIBLE);
                     error.setText("Champs invalides");
+
+                    popupNotification.hideLoadingPopup();
+
                 } else {
-                    System.out.println(textPassword);
+
                     if(textPassword.trim().isEmpty()){
                         password_input = textPassword;
                     }
@@ -93,20 +98,19 @@ public class ProfileActivity extends AppCompatActivity {
                     axios = getConnexion().getApi();
 
                     UserModel updateData = new UserModel(id_,textName,textEmail,password_input);
-                    System.out.println(updateData);
+
                     Call<UserModel> userResponse = axios.updateClient(id_,updateData);
                     userResponse.enqueue(new Callback<UserModel>() {
                         @Override
                         public void onResponse(Call<UserModel> call, Response<UserModel> response) {
-                            System.out.println(response.code());
+
                             if(response.code()==200){
                                 UserModel tmp = response.body();
-
 
                                 SharedPreferences.Editor connectedSharedPreference= sharedPreference.edit();
                                 connectedSharedPreference.putString("email",textEmail);
                                 connectedSharedPreference.putString("name",textName);
-                                connectedSharedPreference.putString("update",textName);
+
                                 if(password_input!=null){
                                     connectedSharedPreference.putString("password",password_input);
                                 }
@@ -114,27 +118,32 @@ public class ProfileActivity extends AppCompatActivity {
                                 connectedSharedPreference.apply();
 
                                 Intent intentHomeActivity = new Intent(ProfileActivity.this, AcceuilActivity.class);
+                                intentHomeActivity.putExtra("update",textName);
                                 intentHomeActivity.putExtra("name",tmp.getName());
                                 startActivity(intentHomeActivity);
+
 
                             } else {
                                 error.setVisibility(View.VISIBLE);
                                 error.setText("Erreur de connection");
+
                             }
+
+                            popupNotification.hideLoadingPopup();
                         }
 
                         @Override
                         public void onFailure(Call<UserModel> call, Throwable t) {
                             error.setVisibility(View.VISIBLE);
-                            error.setText(t.getMessage());
+                            error.setText("Erreur de connexion");
 
-                            System.out.println("tonga Erreur update: ");
-                            System.out.println(t.getMessage());
+                            popupNotification.hideLoadingPopup();
                         }
                     });
                 }
             }
         });
-
     }
+
+
 }

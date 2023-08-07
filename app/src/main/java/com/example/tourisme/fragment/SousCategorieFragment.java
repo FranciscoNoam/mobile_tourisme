@@ -15,6 +15,7 @@ import com.example.tourisme.*;
 import com.example.tourisme.adapter.*;
 import com.example.tourisme.connexion.*;
 import com.example.tourisme.models.*;
+import com.example.tourisme.notification.PopupNotification;
 
 import java.util.*;
 
@@ -24,7 +25,8 @@ import retrofit2.*;
 public class SousCategorieFragment extends Fragment {
     private ConnexionURL connexion;
 
-
+    private  TextView error;
+    private PopupNotification popupNotification;
     public SousCategorieFragment.OnSousCategoryClickListener sousCategoryClickListener;
     public interface OnSousCategoryClickListener {
         void onSousCategoryClick(String categoryName,String id);
@@ -93,11 +95,16 @@ public class SousCategorieFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         this.setView(inflater.inflate(R.layout.fragment_sous_categorie, container, false));
+
+        popupNotification = new PopupNotification(getActivity());
+
         this.setListView(this.getView().findViewById(R.id.list_sous_categorie));
 
 
         searchView = this.getView().findViewById(R.id.search_sous_categorie);
         searchView.clearFocus();
+        error = getView().findViewById(R.id.error_newtWork_sous_categorie);
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -123,6 +130,8 @@ public class SousCategorieFragment extends Fragment {
     private void loadFragment(){
         connexion = new ConnexionURL();
         API axios = connexion.getApi();
+        error.setVisibility(getView().GONE);
+        popupNotification.showLoadingPopup();
 
         Call<ArrayList<SousCategorieModel>> call = axios.findSousCategorie(getCategoryId());
         call.enqueue(new Callback<ArrayList<SousCategorieModel>>() {
@@ -147,12 +156,20 @@ public class SousCategorieFragment extends Fragment {
                         }
                     });
                 }
+
+                popupNotification.hideLoadingPopup();
+
             }
 
             @Override
             public void onFailure(Call<ArrayList<SousCategorieModel>> call, Throwable t) {
                 System.out.println("tonga Erreur");
                 System.out.println(t.getMessage());
+
+                error.setVisibility(getView().VISIBLE);
+                error.setText("Erreur de connexion");
+
+                popupNotification.hideLoadingPopup();
             }
         });
     }

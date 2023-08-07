@@ -20,6 +20,7 @@ import com.example.tourisme.*;
 import com.example.tourisme.connexion.ConnexionURL;
 import com.example.tourisme.models.UserModel;
 import com.example.tourisme.notification.AppNotification;
+import com.example.tourisme.notification.PopupNotification;
 
 import java.util.HashMap;
 
@@ -27,6 +28,7 @@ import retrofit2.*;
 
 
 public class LoginFragment extends Fragment {
+    private PopupNotification popupNotification;
     private ConnexionURL connexion;
     private API axios;
 
@@ -58,6 +60,7 @@ public class LoginFragment extends Fragment {
         this.setView(inflater.inflate(R.layout.fragment_login, container, false));
 
         sharedPreference  = getActivity().getSharedPreferences("app_state", Context.MODE_PRIVATE);
+        popupNotification = new PopupNotification(getActivity());
 
         Boolean isConnected = sharedPreference.getBoolean("is_authentificated",false);
         String emailSharedPreference = sharedPreference.getString("email",null);
@@ -78,11 +81,16 @@ public class LoginFragment extends Fragment {
             public void onClick(View view) {
                 error.setVisibility(getView().GONE);
 
+                popupNotification.showLoadingPopup();
+
                 String textUsername = username.getText().toString();
                 String textPassword = password.getText().toString();
                 if(textUsername.trim().isEmpty() || textPassword.trim().isEmpty()){
                     error.setVisibility(getView().VISIBLE);
                     error.setText("Email ou mot de passe est incorrect");
+
+                    popupNotification.hideLoadingPopup();
+
                 } else {
                     username.setText("");
                     password.setText("");
@@ -97,7 +105,7 @@ public class LoginFragment extends Fragment {
                     userResponse.enqueue(new Callback<UserModel>() {
                         @Override
                         public void onResponse(Call<UserModel> call, Response<UserModel> response) {
-                            System.out.println(response.code());
+
                             if(response.code()==200){
                                 UserModel tmp = response.body();
 
@@ -117,18 +125,20 @@ public class LoginFragment extends Fragment {
 
                             } else {
                                 error.setVisibility(getView().VISIBLE);
-                                error.setText("Erreur de connection");
+                                error.setText("Email ou mot de passe est incorrect");
+
                             }
+
+                            popupNotification.hideLoadingPopup();
 
                         }
 
                         @Override
                         public void onFailure(Call<UserModel> call, Throwable t) {
                             error.setVisibility(getView().VISIBLE);
-                            error.setText("Email ou mot de passe est incorrect");
+                            error.setText("Erreur de connection");
 
-                            System.out.println("tonga Erreur");
-                            System.out.println(t.getMessage());
+                            popupNotification.hideLoadingPopup();
                         }
                     });
                 }

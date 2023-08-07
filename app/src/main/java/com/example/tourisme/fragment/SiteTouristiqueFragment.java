@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.tourisme.API.API;
 import com.example.tourisme.DetailActiviy;
@@ -19,6 +20,7 @@ import com.example.tourisme.R;
 import com.example.tourisme.adapter.SiteTourismeAdapter;
 import com.example.tourisme.connexion.ConnexionURL;
 import com.example.tourisme.models.SiteTourismeModel;
+import com.example.tourisme.notification.PopupNotification;
 
 import java.util.ArrayList;
 
@@ -29,6 +31,10 @@ import retrofit2.Response;
 
 public class SiteTouristiqueFragment extends Fragment {
     private ConnexionURL connexion;
+
+    private TextView error;
+    private PopupNotification popupNotification;
+
     private String sousCategory;
 
     private View view;
@@ -87,10 +93,15 @@ public class SiteTouristiqueFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         this.setView(inflater.inflate(R.layout.fragment_site_touristique, container, false));
 
+        popupNotification = new PopupNotification(getActivity());
 
         this.setListView(this.getView().findViewById(R.id.list_tourisme));
         searchView = this.getView().findViewById(R.id.search_tourisme);
         searchView.clearFocus();
+
+        error = getView().findViewById(R.id.error_newtWork_site_touristique);
+
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -118,6 +129,9 @@ public class SiteTouristiqueFragment extends Fragment {
     private void loadFragment(){
         connexion = new ConnexionURL();
         API axios = connexion.getApi();
+        error.setVisibility(getView().GONE);
+
+        popupNotification.showLoadingPopup();
 
         Call<ArrayList<SiteTourismeModel>> call = axios.findSiteTouristique(getSousCategoryId());
         call.enqueue(new Callback<ArrayList<SiteTourismeModel>>() {
@@ -148,12 +162,21 @@ public class SiteTouristiqueFragment extends Fragment {
                         }
                     });
                 }
+
+                popupNotification.hideLoadingPopup();
+
             }
 
             @Override
             public void onFailure(Call<ArrayList<SiteTourismeModel>> call, Throwable t) {
                 System.out.println("tonga Erreur");
                 System.out.println(t.getMessage());
+
+                error.setVisibility(getView().VISIBLE);
+                error.setText("Erreur de connexion");
+
+                popupNotification.hideLoadingPopup();
+
             }
         });
 

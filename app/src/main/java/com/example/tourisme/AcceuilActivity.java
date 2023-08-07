@@ -23,6 +23,7 @@ import com.example.tourisme.notification.AppNotification;
 public class AcceuilActivity extends AppCompatActivity   implements CategorieFragment.OnCategoryClickListener, SousCategorieFragment.OnSousCategoryClickListener{
 
     public SharedPreferences sharedPreference;
+    public AppNotification notification = new AppNotification();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +40,18 @@ public class AcceuilActivity extends AppCompatActivity   implements CategorieFra
         String tmp = getIntent().getStringExtra("name");
         String tmp2 = getIntent().getStringExtra("name_registre");
         String tmp3 = getIntent().getStringExtra("update");
+
         setContentView(R.layout.activity_acceuil);
 
-        new AppNotification().createNotificationChannels(this);
+        notification.createNotificationChannels(this);
+        notification.showNotification(this,tmp);
+        notification.showNotificationRegsitre(this,tmp2);
+        notification.showNotificationUpdate(this,tmp3);
 
-
-        showNotification(tmp);
+  /*      showNotification(tmp);
         showNotificationRegsitre(tmp2);
         showNotificationUpdate(tmp3);
-
+*/
         loadCategorieFragment();
 
     } // end onCreate
@@ -60,7 +64,7 @@ public class AcceuilActivity extends AppCompatActivity   implements CategorieFra
 
         if(name_!=null){
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "channel1")
-                    .setSmallIcon(R.drawable.ic_notification)
+                    .setSmallIcon(R.drawable.logo_notification)
                     .setContentTitle("Coucou "+name)
                     .setContentText("Bienvenu Sur la  l'application de mise en valeur des cites touristique de Madagascar")
                     .setPriority(NotificationCompat.PRIORITY_HIGH)
@@ -90,7 +94,7 @@ public class AcceuilActivity extends AppCompatActivity   implements CategorieFra
 
         if(name_!=null){
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "channel1")
-                    .setSmallIcon(R.drawable.ic_notification)
+                    .setSmallIcon(R.drawable.logo_notification)
                     .setContentTitle("Inscription terminer ")
                     .setContentText("Bienvenu Sur la  l'application "+name_)
                     .setPriority(NotificationCompat.PRIORITY_HIGH)
@@ -120,7 +124,7 @@ public class AcceuilActivity extends AppCompatActivity   implements CategorieFra
 
         if(name_!=null){
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "channel2")
-                    .setSmallIcon(R.drawable.ic_notification)
+                    .setSmallIcon(R.drawable.logo_notification)
                     .setContentTitle("Mise à jour des informations")
                     .setContentText("Votre mise à jour des informations sont terminer "+name_)
                     .setPriority(NotificationCompat.PRIORITY_HIGH)
@@ -143,18 +147,6 @@ public class AcceuilActivity extends AppCompatActivity   implements CategorieFra
 
     }
 
-    private void createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = "Channel Name";
-            String description = "Description du canal";
-            int importance = NotificationManager.IMPORTANCE_HIGH;
-            NotificationChannel channel = new NotificationChannel("channel1", name, importance);
-            channel.setDescription(description);
-
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
-    }
 
 
     private void loadCategorieFragment() {

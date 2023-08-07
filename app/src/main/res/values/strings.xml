@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">Cite Touristique</string>
-    <string name="login_name">Bienvenu sur Tourisme</string>
-    <string name="signup_name">Inscription sur Tourisme</string>
+    <string name="app_name">AnkarA</string>
+    <string name="login_name">Bienvenu sur AnkarA</string>
+    <string name="signup_name">Inscription sur AnkarA</string>
     <string name="home_name">Acceuil</string>
     <string name="search_name">Search</string>
     <string name="setting_name">Préferences</string>

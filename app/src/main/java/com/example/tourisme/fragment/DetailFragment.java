@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.tourisme.API.API;
 import com.example.tourisme.R;
@@ -20,6 +21,7 @@ import com.example.tourisme.connexion.ConnexionURL;
 import com.example.tourisme.models.CategorieModel;
 import com.example.tourisme.models.DetailModel;
 import com.example.tourisme.models.SousCategorieModel;
+import com.example.tourisme.notification.PopupNotification;
 
 import java.util.ArrayList;
 
@@ -30,7 +32,8 @@ import retrofit2.Response;
 public class DetailFragment extends Fragment {
 
     private ConnexionURL connexion;
-
+    private TextView error;
+    private PopupNotification popupNotification;
 
     private View view;
     private ListView listView;
@@ -86,6 +89,9 @@ public class DetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         this.setView(inflater.inflate(R.layout.fragment_detail, container, false));
 
+       // popupNotification = new PopupNotification(getActivity());
+        error = getView().findViewById(R.id.error_newtWork_detail);
+
         this.setListView(this.getView().findViewById(R.id.list_detail_site));
         Bundle args = getArguments();
         if (args != null) {
@@ -101,10 +107,16 @@ public class DetailFragment extends Fragment {
         connexion = new ConnexionURL();
         API axios = connexion.getApi();
 
+        error.setVisibility(getView().GONE);
+
+       // popupNotification.showLoadingPopup();
+
         Call<ArrayList<DetailModel>> call = axios.findDetailSiteTouristique(getSousCategoryId());
         call.enqueue(new Callback<ArrayList<DetailModel>>() {
             @Override
             public void onResponse(Call<ArrayList<DetailModel>> call, Response<ArrayList<DetailModel>> response) {
+
+                //popupNotification.hideLoadingPopup();
 
                 if(response.code()==200){
                     list = response.body();
@@ -115,6 +127,7 @@ public class DetailFragment extends Fragment {
                     getListView().setAdapter(getAdapter());
                     registerForContextMenu(getListView());
 
+                    //popupNotification.hideLoadingPopup();
                 }
             }
 
@@ -122,6 +135,12 @@ public class DetailFragment extends Fragment {
             public void onFailure(Call<ArrayList<DetailModel>> call, Throwable t) {
                 System.out.println("tonga Erreur");
                 System.out.println(t.getMessage());
+
+                error.setVisibility(getView().VISIBLE);
+                error.setText("Erreur de connexion");
+
+            //    popupNotification.hideLoadingPopup();
+
             }
         });
 

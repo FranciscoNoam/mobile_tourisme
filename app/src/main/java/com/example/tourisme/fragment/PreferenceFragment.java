@@ -44,14 +44,12 @@ public class PreferenceFragment extends PreferenceFragmentCompat implements Shar
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals("theme_preference")) {
-            // Si la préférence "Dark theme" est modifiée, appliquez le thème approprié
             boolean isDarkThemeEnabled = sharedPreferences.getBoolean("theme_preference", false);
             if (isDarkThemeEnabled) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             }
-            // Redémarrez votre activité ou votre application pour appliquer le thème
             getActivity().recreate();
         }
     }
@@ -61,7 +59,6 @@ public class PreferenceFragment extends PreferenceFragmentCompat implements Shar
     public boolean onPreferenceTreeClick(Preference preference) {
         String key = preference.getKey();
         if ("profile_preference".equals(key)) {
-            // Lancer l'activité de profil
             Intent intent = new Intent(getActivity(), ProfileActivity.class);
             startActivity(intent);
             return true;
@@ -72,7 +69,6 @@ public class PreferenceFragment extends PreferenceFragmentCompat implements Shar
     @Override
     public void onDestroy() {
         super.onDestroy();
-        // N'oubliez pas de supprimer l'écouteur lors de la destruction de l'activité ou du fragment
         PreferenceManager.getDefaultSharedPreferences(requireContext())
                 .unregisterOnSharedPreferenceChangeListener(this);
     }

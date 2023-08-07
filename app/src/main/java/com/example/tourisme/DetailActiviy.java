@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.tourisme.connexion.ConnexionURL;
 import com.example.tourisme.fragment.DetailFragment;
+import com.example.tourisme.notification.PopupNotification;
 
 public class DetailActiviy extends AppCompatActivity {
 
@@ -39,9 +40,11 @@ public class DetailActiviy extends AppCompatActivity {
 
         chargeDetail();
         loadDetailFragment();
+
     }
 
     private void chargeDetail(){
+
         TextView titre_ = findViewById(R.id.title_detail);
         TextView desc_ = findViewById(R.id.description_detail);
         ImageView img_ = findViewById(R.id.image_detail);
@@ -58,7 +61,6 @@ public class DetailActiviy extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putString("sousCategoryId", sousCategoryId);
         detailFragment.setArguments(bundle);
-
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_detail_site, detailFragment).addToBackStack(null).commit();
 
     }

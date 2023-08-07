@@ -80,7 +80,7 @@ public class DetailAdapter extends ArrayAdapter<DetailModel> {
         descriptionShort.setWebViewClient(new WebViewClient());
 
         if(!txturl_image.trim().isEmpty()){
-            image.setVisibility(View.VISIBLE);
+          //  image.setVisibility(View.VISIBLE);
             Glide.with(convertView)
                     .load(new ConnexionURL().getBaseUrl()+txturl_image)
                     .into(image);

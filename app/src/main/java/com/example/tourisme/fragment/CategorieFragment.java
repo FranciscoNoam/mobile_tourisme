@@ -16,6 +16,7 @@ import com.example.tourisme.*;
 import com.example.tourisme.adapter.*;
 import com.example.tourisme.connexion.*;
 import com.example.tourisme.models.*;
+import com.example.tourisme.notification.PopupNotification;
 
 import java.util.*;
 
@@ -23,7 +24,7 @@ import retrofit2.*;
 
 
 public class CategorieFragment extends Fragment {
-
+    private PopupNotification popupNotification;
     private ConnexionURL connexion;
     public OnCategoryClickListener categoryClickListener;
     public interface OnCategoryClickListener {
@@ -32,7 +33,7 @@ public class CategorieFragment extends Fragment {
 
     private SearchView searchView;
 
-
+    private  TextView error;
     private View view;
     private ListView listView;
     private CategorieAdapter adapter;
@@ -87,11 +88,16 @@ public class CategorieFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         this.setView(inflater.inflate(R.layout.fragment_categorie, container, false));
 
+        popupNotification = new PopupNotification(getActivity());
+
         this.setListView(this.getView().findViewById(R.id.list_categorie));
 
 
         searchView = this.getView().findViewById(R.id.search_categorie);
         searchView.clearFocus();
+
+         error = getView().findViewById(R.id.error_newtWork_categorie);
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -111,8 +117,12 @@ public class CategorieFragment extends Fragment {
 
 
     private void loadFragment(){
+        error.setVisibility(getView().GONE);
+
         connexion = new ConnexionURL();
         API axios = connexion.getApi();
+
+        popupNotification.showLoadingPopup();
 
         Call<ArrayList<CategorieModel>> call = axios.findAll();
         call.enqueue(new Callback<ArrayList<CategorieModel>>() {
@@ -138,12 +148,19 @@ public class CategorieFragment extends Fragment {
                         }
                     });
                 }
+                popupNotification.hideLoadingPopup();
             }
 
             @Override
             public void onFailure(Call<ArrayList<CategorieModel>> call, Throwable t) {
                 System.out.println("tonga Erreur");
                 System.out.println(t.getMessage());
+
+                error.setVisibility(getView().VISIBLE);
+                error.setText("Erreur de connexion");
+
+                popupNotification.hideLoadingPopup();
+
             }
         });
 
