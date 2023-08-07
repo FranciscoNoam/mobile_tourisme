@@ -125,7 +125,7 @@ public class RegisterFragment extends Fragment {
 
                             } else {
                                 error.setVisibility(getView().VISIBLE);
-                                error.setText("Erreur lors de l'enregistrement des données");
+                                error.setText("Erreur de connection");
                             }
 
                         }

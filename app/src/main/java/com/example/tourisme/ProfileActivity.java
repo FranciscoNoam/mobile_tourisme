@@ -119,7 +119,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                             } else {
                                 error.setVisibility(View.VISIBLE);
-                                error.setText("Email ou mot de passe est incorrect");
+                                error.setText("Erreur de connection");
                             }
                         }
 

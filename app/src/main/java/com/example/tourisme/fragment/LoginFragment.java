@@ -117,7 +117,7 @@ public class LoginFragment extends Fragment {
 
                             } else {
                                 error.setVisibility(getView().VISIBLE);
-                                error.setText("Email ou mot de passe est incorrect");
+                                error.setText("Erreur de connection");
                             }
 
                         }
