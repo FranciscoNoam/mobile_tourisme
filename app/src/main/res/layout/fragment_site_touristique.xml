@@ -24,7 +24,7 @@
         <ListView
             android:id="@+id/list_tourisme"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="659dp"
             android:layout_margin="18dp"
             tools:ignore="MissingConstraints" />
     </LinearLayout>

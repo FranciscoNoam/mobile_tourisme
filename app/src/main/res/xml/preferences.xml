@@ -45,8 +45,8 @@
             android:title="ANTOENJARA Noam Francisco"
             />
         <Preference
-            android:title="HERINIANA Roger Nico"
-            android:summary="1010"
+            android:title="RALISON Heriniaina Rogenico Ruhmer"
+            android:summary="ETU003018"
             />
     </PreferenceCategory>
 </PreferenceScreen>
