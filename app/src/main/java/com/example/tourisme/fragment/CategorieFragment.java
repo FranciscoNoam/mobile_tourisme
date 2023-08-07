@@ -143,7 +143,7 @@ public class CategorieFragment extends Fragment {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                            categoryClickListener.onCategoryClick(getAdapter().getItem(position).getTitle(),getAdapter().getItem(position).getId());
+                            categoryClickListener.onCategoryClick(getAdapter().getItem(position).getName(),getAdapter().getItem(position).getId());
 
                         }
                     });
@@ -169,7 +169,7 @@ public class CategorieFragment extends Fragment {
     private void filterList(String text){
         ArrayList<CategorieModel> listes = new ArrayList<>();
         for (CategorieModel item: list){
-         if(item.getTitle().toLowerCase().contains(text.toLowerCase())){
+         if(item.getName().toLowerCase().contains(text.toLowerCase())){
              listes.add(item);
          }
         }
@@ -181,7 +181,7 @@ public class CategorieFragment extends Fragment {
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                categoryClickListener.onCategoryClick(getAdapter().getItem(position).getTitle(),getAdapter().getItem(position).getId());
+                categoryClickListener.onCategoryClick(getAdapter().getItem(position).getName(),getAdapter().getItem(position).getId());
             }
         });
     }

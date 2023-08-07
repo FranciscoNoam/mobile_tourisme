@@ -60,10 +60,9 @@ public class CategorieAdapter extends ArrayAdapter<CategorieModel> {
 
         final CategorieModel tourismeModel = getItem(position);
 
-        String txttitle= this.getValues().get(position).getTitle();
-        String txtdescription = this.getValues().get(position).getDescription();
-        String txturl_image = this.getValues().get(position).getImage();
-//"http://localhost:8080/upload/image.png"
+        String txttitle= this.getValues().get(position).getName();
+       // String txtdescription = this.getValues().get(position).getDescription();
+       // String txturl_image = this.getValues().get(position).getImage();
         convertView = LayoutInflater.from(this.getContext()).inflate(this.getResource(),parent,false);
 
         TextView title = convertView.findViewById(R.id.title_categorie);
@@ -71,11 +70,11 @@ public class CategorieAdapter extends ArrayAdapter<CategorieModel> {
         TextView description = convertView.findViewById(R.id.description_categorie);
 
         title.setText(txttitle);
-        description.setText(txtdescription);
+       /* description.setText(txtdescription);
         Glide.with(convertView)
                 .load(new ConnexionURL().getBaseUrl()+txturl_image)
                 .into(image);
-
+*/
 
         return convertView;
     }

@@ -1,25 +1,25 @@
 package com.example.tourisme.models;
 
 public class CategorieModel {
-    private  String id;
-    private String title;
+    private  String id_;
+    private String name;
     private String description;
     private String image;
 
     public String getId() {
-        return id;
+        return id_;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.id_ = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String title) {
+        this.name = title;
     }
 
     public String getDescription() {
@@ -39,24 +39,30 @@ public class CategorieModel {
     }
 
     public CategorieModel(String id, String title, String description, String image) {
-        this.id = id;
-        this.title = title;
+        this.id_ = id;
+        this.name = title;
         this.description = description;
         this.image = image;
     }
 
     public CategorieModel(String title, String description, String image) {
-        this.title = title;
+        this.name = title;
         this.description = description;
         this.image = image;
     }
+
+    public CategorieModel(String id, String name) {
+        this.name = name;
+        this.id_ = id;
+    }
+
     public CategorieModel(){}
 
     @Override
     public String toString() {
         return "CategorieModel{" +
-                "id='"+ id+ '\'' +
-                "title='" + title + '\'' +
+                "id='"+ id_+ '\'' +
+                "name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", image='" + image + '\'' +
                 '}';
