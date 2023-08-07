@@ -141,6 +141,7 @@ public class SousCategorieFragment extends Fragment {
                 if(response.code()==200){
                     list = response.body();
 
+
                     setDataArray(list);
 
                     setAdapter(new SousCategorieAdapter(getActivity(),R.layout.item_sous_categorie,getDataArray()));
@@ -151,7 +152,7 @@ public class SousCategorieFragment extends Fragment {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                           sousCategoryClickListener.onSousCategoryClick(getAdapter().getItem(position).getTitle(),getAdapter().getItem(position).getId());
+                           sousCategoryClickListener.onSousCategoryClick(getAdapter().getItem(position).getName(),getAdapter().getItem(position).getId());
 
                         }
                     });
@@ -177,7 +178,7 @@ public class SousCategorieFragment extends Fragment {
     private void filterList(String text) {
         ArrayList<SousCategorieModel> listes = new ArrayList<>();
         for (SousCategorieModel item : list) {
-            if (item.getTitle().toLowerCase().contains(text.toLowerCase())) {
+            if (item.getName().toLowerCase().contains(text.toLowerCase()) || item.getDescription().toLowerCase().contains(text.toLowerCase())) {
                 listes.add(item);
             }
         }
@@ -189,7 +190,7 @@ public class SousCategorieFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                sousCategoryClickListener.onSousCategoryClick(getAdapter().getItem(position).getTitle(),getAdapter().getItem(position).getId());
+                sousCategoryClickListener.onSousCategoryClick(getAdapter().getItem(position).getName(),getAdapter().getItem(position).getId());
 
             }
         });

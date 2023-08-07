@@ -60,14 +60,14 @@ public class ProfileActivity extends AppCompatActivity {
 
         EditText name_init = findViewById(R.id.name_profile);
         EditText email_init = findViewById(R.id.email_profile);
-        EditText password_init = findViewById(R.id.password_profile);
+        //EditText password_init = findViewById(R.id.password_profile);
         TextView error =findViewById(R.id.error_profile);
 
         Button change = findViewById(R.id.change_profile);
 
         name_init.setText(name_);
         email_init.setText(email_);
-        password_init.setText(password_);
+        //password_init.setText(password_);
 
         change.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,14 +90,10 @@ public class ProfileActivity extends AppCompatActivity {
 
                 } else {
 
-                    if(textPassword.trim().isEmpty()){
-                        password_input = textPassword;
-                    }
-
                     setConnexion(new ConnexionURL());
                     axios = getConnexion().getApi();
 
-                    UserModel updateData = new UserModel(id_,textName,textEmail,password_input);
+                    UserModel updateData = new UserModel(id_,textName,textEmail,textPassword);
 
                     Call<UserModel> userResponse = axios.updateClient(id_,updateData);
                     userResponse.enqueue(new Callback<UserModel>() {

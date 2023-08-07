@@ -67,7 +67,7 @@ public class SousCategorieAdapter extends ArrayAdapter<SousCategorieModel> {
         final SousCategorieModel sousCategorieModelModel = getItem(position);
         convertView = LayoutInflater.from(this.getContext()).inflate(this.getResource(),parent,false);
 
-        String txttitle= this.getValues().get(position).getTitle();
+        String txttitle= this.getValues().get(position).getName();
         String txtdescription = this.getValues().get(position).getDescription();
         String txturl_image = this.getValues().get(position).getImage();
 

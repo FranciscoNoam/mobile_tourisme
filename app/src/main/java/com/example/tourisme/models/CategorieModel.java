@@ -1,17 +1,17 @@
 package com.example.tourisme.models;
 
 public class CategorieModel {
-    private  String id_;
+    private  String _id;
     private String name;
     private String description;
     private String image;
 
     public String getId() {
-        return id_;
+        return _id;
     }
 
     public void setId(String id) {
-        this.id_ = id;
+        this._id = id;
     }
 
     public String getName() {
@@ -39,7 +39,7 @@ public class CategorieModel {
     }
 
     public CategorieModel(String id, String title, String description, String image) {
-        this.id_ = id;
+        this._id = id;
         this.name = title;
         this.description = description;
         this.image = image;
@@ -53,7 +53,7 @@ public class CategorieModel {
 
     public CategorieModel(String id, String name) {
         this.name = name;
-        this.id_ = id;
+        this._id = id;
     }
 
     public CategorieModel(){}
@@ -61,7 +61,7 @@ public class CategorieModel {
     @Override
     public String toString() {
         return "CategorieModel{" +
-                "id='"+ id_+ '\'' +
+                "id_='"+ _id+ '\'' +
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", image='" + image + '\'' +

@@ -3,24 +3,19 @@ package com.example.tourisme.fragment;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.tourisme.API.API;
 import com.example.tourisme.R;
-import com.example.tourisme.adapter.CategorieAdapter;
 import com.example.tourisme.adapter.DetailAdapter;
 import com.example.tourisme.connexion.ConnexionURL;
-import com.example.tourisme.models.CategorieModel;
 import com.example.tourisme.models.DetailModel;
-import com.example.tourisme.models.SousCategorieModel;
 import com.example.tourisme.notification.PopupNotification;
 
 import java.util.ArrayList;
@@ -29,7 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DetailFragment extends Fragment {
+public class DetailFragment_backup extends Fragment {
 
     private ConnexionURL connexion;
     private TextView error;

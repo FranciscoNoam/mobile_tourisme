@@ -81,19 +81,19 @@ public class SiteTourismeAdapter extends ArrayAdapter<SiteTourismeModel> {
 
         final SiteTourismeModel tourismeModel = getItem(position);
 
-        String tourisme_title= this.getValues().get(position).getTitle();
+        String tourisme_title= this.getValues().get(position).getName();
         String tourisme_description = this.getValues().get(position).getDescription();
-        String tourisme_date = dateFormat.format(this.getValues().get(position).getCreatedAt());
+       // String tourisme_date = dateFormat.format(this.getValues().get(position).getCreatedAt());
         String tourisme_url_image = this.getValues().get(position).getImage();
 
         convertView = LayoutInflater.from(this.getContext()).inflate(this.getResource(),parent,false);
 
         TextView title_detail = convertView.findViewById(R.id.title_detail_list);
-        TextView date_detail = convertView.findViewById(R.id.date_detail_list);
+       // TextView date_detail = convertView.findViewById(R.id.date_detail_list);
         TextView description_detail = convertView.findViewById(R.id.description_detail_list);
         ImageView image = convertView.findViewById(R.id.image_detail_list);
         title_detail.setText(tourisme_title);
-        date_detail.setText(tourisme_date);
+       // date_detail.setText(tourisme_date);
         description_detail.setText(tourisme_description);
         Glide.with(convertView)
                 .load(new ConnexionURL().getBaseUrl()+tourisme_url_image)
@@ -113,21 +113,5 @@ public class SiteTourismeAdapter extends ArrayAdapter<SiteTourismeModel> {
         return convertView;
     }
 
-   /* public void filter(String query) {
-        ArrayList<TourismeModel> filteredList = new ArrayList<>();
-        if (query.isEmpty()) {
-            filteredList.addAll(values); // Afficher toutes les données si le texte de recherche est vide
-        } else {
-            query = query.toLowerCase();
-            for (TourismeModel tourisme : values) {
-                if (tourisme.getTitle().toLowerCase().contains(query) || tourisme.getShortDescription().toLowerCase().contains(query)) {
-                    filteredList.add(tourisme);
-                }
-            }
-        }
-        clear();
-        addAll(filteredList);
-        notifyDataSetChanged();
-    }*/
 
 }

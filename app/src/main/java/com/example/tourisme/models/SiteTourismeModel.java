@@ -4,27 +4,31 @@ package com.example.tourisme.models;
 import java.util.Date;
 
 public class SiteTourismeModel {
-    private String id;
-    private String title;
+    private String _id;
+    private String name;
     private String description;
     private  String image;
-    private Date createdAt;
+
+    private String video;
     private  SousCategorieModel sousCategorie;
+    private String contenu;
+    private Date createdAt;
+
 
     public String getId() {
-        return id;
+        return _id;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this._id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String title) {
+        this.name = title;
     }
 
     public String getDescription() {
@@ -59,26 +63,62 @@ public class SiteTourismeModel {
         this.sousCategorie = sousCategorie;
     }
 
+    public String getId_() {
+        return _id;
+    }
+
+    public void setId_(String id_) {
+        this._id = id_;
+    }
+
+    public String getVideo() {
+        return video;
+    }
+
+    public void setVideo(String video) {
+        this.video = video;
+    }
+
+    public String getContenu() {
+        return contenu;
+    }
+
+    public void setContenu(String contenu) {
+        this.contenu = contenu;
+    }
+
     public SiteTourismeModel(){}
 
-    public SiteTourismeModel(String id, String title, String description, String image, Date createdAt, SousCategorieModel sousCategorie) {
-        this.id = id;
-        this.title = title;
+   /* public SiteTourismeModel(String id, String title, String description, String image, Date createdAt, SousCategorieModel sousCategorie) {
+        this._id = id;
+        this.name = title;
         this.description = description;
         this.image = image;
         this.createdAt = createdAt;
         this.sousCategorie = sousCategorie;
+    }*/
+
+
+    public SiteTourismeModel(String id_, String name, String description, String image, String video, String contenu) {
+        this._id = id_;
+        this.name = name;
+        this.description = description;
+        this.image = image;
+        this.video = video;
+       // this.sousCategorie = sousCategorie;
+        this.contenu = contenu;
     }
 
     @Override
     public String toString() {
         return "SiteTourismeModel{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
+                "id_='" + _id + '\'' +
+                ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", image='" + image + '\'' +
-                ", createdAt=" + createdAt +
+                ", video='" + video + '\'' +
                 ", sousCategorie=" + sousCategorie +
+                ", contenu='" + contenu + '\'' +
                 '}';
     }
 }

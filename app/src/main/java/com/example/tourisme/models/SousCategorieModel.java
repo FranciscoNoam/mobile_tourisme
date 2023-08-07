@@ -1,26 +1,26 @@
 package com.example.tourisme.models;
 
 public class SousCategorieModel {
-    private  String id;
-    private String title;
+    private  String _id;
+    private String name;
     private String description;
     private String image;
     private CategorieModel categorie;
 
     public String getId() {
-        return id;
+        return _id;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this._id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String title) {
+        this.name = title;
     }
 
     public String getDescription() {
@@ -48,22 +48,22 @@ public class SousCategorieModel {
     }
 
     public SousCategorieModel(String id,String title, String description, String image, CategorieModel categorie) {
-        this.id = id;
-        this.title = title;
+        this._id = id;
+        this.name = title;
         this.description = description;
         this.image = image;
         this.categorie = categorie;
     }
 
     public SousCategorieModel(String title, String description, String image, CategorieModel categorie) {
-        this.title = title;
+        this.name = title;
         this.description = description;
         this.image = image;
         this.categorie = categorie;
     }
 
     public SousCategorieModel(String title, String description, String image) {
-        this.title = title;
+        this.name = title;
         this.description = description;
         this.image = image;
     }
@@ -71,8 +71,8 @@ public class SousCategorieModel {
     @Override
     public String toString() {
         return "SousCategorieModel{" +
-                "id='"+ id+ '\'' +
-                "title='" + title + '\'' +
+                "id_='"+ _id+ '\'' +
+                "name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", image='" + image + '\'' +
                 ", categorie=" + categorie +

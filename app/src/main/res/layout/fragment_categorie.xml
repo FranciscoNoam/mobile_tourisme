@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="#673AB7"
-    android:foregroundTint="#B61E1E"
     tools:context=".fragment.CategorieFragment">
 
     <LinearLayout

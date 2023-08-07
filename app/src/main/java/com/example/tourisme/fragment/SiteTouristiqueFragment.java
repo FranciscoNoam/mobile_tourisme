@@ -133,6 +133,7 @@ public class SiteTouristiqueFragment extends Fragment {
 
         popupNotification.showLoadingPopup();
 
+        System.out.println("tonga+++++++++++++++ "+getSousCategoryId());
         Call<ArrayList<SiteTourismeModel>> call = axios.findSiteTouristique(getSousCategoryId());
         call.enqueue(new Callback<ArrayList<SiteTourismeModel>>() {
             @Override
@@ -153,9 +154,12 @@ public class SiteTouristiqueFragment extends Fragment {
                         public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
                             Intent detailActivity = new Intent(getActivity(), DetailActiviy.class);
-                            detailActivity.putExtra("title_detail_site", getAdapter().getItem(position).getTitle());
+
+                            detailActivity.putExtra("title_detail_site", getAdapter().getItem(position).getName());
                             detailActivity.putExtra("description_detail_site", getAdapter().getItem(position).getDescription());
                             detailActivity.putExtra("image_detail_site", getAdapter().getItem(position).getImage());
+                            detailActivity.putExtra("video_detail_site", getAdapter().getItem(position).getVideo());
+                            detailActivity.putExtra("contenu_detail_site", getAdapter().getItem(position).getContenu());
                             detailActivity.putExtra("id_detail_site", getAdapter().getItem(position).getId());
 
                             startActivity(detailActivity);
@@ -169,7 +173,7 @@ public class SiteTouristiqueFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ArrayList<SiteTourismeModel>> call, Throwable t) {
-                System.out.println("tonga Erreur");
+                System.out.println("tonga Erreur site touristique");
                 System.out.println(t.getMessage());
 
                 error.setVisibility(getView().VISIBLE);
@@ -185,7 +189,7 @@ public class SiteTouristiqueFragment extends Fragment {
     private void filterList(String text) {
         ArrayList<SiteTourismeModel> listes = new ArrayList<>();
         for (SiteTourismeModel item : list) {
-            if (item.getTitle().toLowerCase().contains(text.toLowerCase())) {
+            if (item.getName().toLowerCase().contains(text.toLowerCase()) || item.getDescription().toLowerCase().contains(text.toLowerCase())) {
                 listes.add(item);
             }
         }
@@ -198,7 +202,7 @@ public class SiteTouristiqueFragment extends Fragment {
 
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Intent detailActivity = new Intent(getActivity(), DetailActiviy.class);
-                detailActivity.putExtra("title_detail_home", getAdapter().getItem(position).getTitle());
+                detailActivity.putExtra("title_detail_home", getAdapter().getItem(position).getName());
 
                 startActivity(detailActivity);
             }

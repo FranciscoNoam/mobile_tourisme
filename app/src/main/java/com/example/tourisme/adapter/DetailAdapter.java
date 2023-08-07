@@ -18,9 +18,7 @@ import androidx.annotation.Nullable;
 import com.bumptech.glide.Glide;
 import com.example.tourisme.R;
 import com.example.tourisme.connexion.ConnexionURL;
-import com.example.tourisme.fragment.DetailFragment;
 import com.example.tourisme.models.DetailModel;
-import com.example.tourisme.models.SousCategorieModel;
 
 import java.util.ArrayList;
 

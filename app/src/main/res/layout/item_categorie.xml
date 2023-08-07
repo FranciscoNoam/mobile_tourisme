@@ -15,7 +15,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/loginViewsMargin"
         android:layout_marginBottom="@dimen/loginViewsMargin"
-        android:background="@color/whiteCardColor"
+        android:background="@color/purple_500"
         android:layout_width="260dp"
         android:layout_height="260dp"
         >
@@ -23,15 +23,14 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
+            android:layout_height="match_parent"
+            >
 
             <ImageView
-                android:id="@+id/image_categorie"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:src="@drawable/fond"
                 android:scaleType="center"
-                app:srcCompat="@drawable/logo"
                 />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,26 +43,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Regionaux"
-                    android:textColor="@color/black"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.366"
-                    tools:layout_editor_absoluteX="16dp" />
-
-                <TextView
-                    android:id="@+id/description_categorie"
-                    style="@style/headerTextPrimary"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Description courte des catégories"
-                    android:textColor="@color/purple_500"
-                    android:textSize="16sp"
+                    android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/title_categorie"
-                    app:layout_constraintVertical_bias="0.267" />
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
