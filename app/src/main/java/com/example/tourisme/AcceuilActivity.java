@@ -187,6 +187,7 @@ public class AcceuilActivity extends AppCompatActivity   implements CategorieFra
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 SharedPreferences.Editor editor=  AcceuilActivity.this.getSharedPreferences("app_state", Context.MODE_PRIVATE).edit();
+
                 editor.remove("is_authentificated");
                 editor.remove("id");
                 editor.remove("name");
@@ -195,6 +196,13 @@ public class AcceuilActivity extends AppCompatActivity   implements CategorieFra
                 editor.remove("name_registre");
                 editor.remove("update");
                         editor.apply();
+
+
+                Intent intent = new Intent(AcceuilActivity.this, MainActivity.class);
+
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                startActivity(intent);
 
                 finish();
             }

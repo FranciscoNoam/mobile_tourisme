@@ -12,7 +12,7 @@ import android.view.View;
 import com.example.tourisme.fragment.PreferenceFragment;
 
 public class PreferenceActivity extends AppCompatActivity {
-
+    public SharedPreferences sharedPreference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +26,15 @@ public class PreferenceActivity extends AppCompatActivity {
         } else {
             setTheme(R.style.AppTheme);
         }
+
+     /*   Boolean isConnected = sharedPreference.getBoolean("is_authentificated",false);
+        String emailSharedPreference = sharedPreference.getString("email",null);
+        if(!isConnected){
+            Intent intent= new Intent(this, MainActivity.class);
+            intent.putExtra("email",emailSharedPreference);
+            startActivity(intent);
+        } */
+
 
         setContentView(R.layout.activity_preference);
 

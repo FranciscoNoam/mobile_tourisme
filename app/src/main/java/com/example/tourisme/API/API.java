@@ -20,15 +20,15 @@ public interface API {
     Call<UserModel> login(@Body HashMap<String,String> user);
 
     //+++++++++++++++++++ API Menu +++++++++++++++
-    @GET("/api/getAllCategories")
+    @GET("/api/menus")
     Call<ArrayList<CategorieModel>> findAll();
 
     //+++++++++++++++++++ API Sous Menu ++++++++++
-    @GET("/api/getAllSousCategories/{id}")
+    @GET("/api/sous-menus/{id}")
     Call<ArrayList<SousCategorieModel>> findSousCategorie(@Path("id") String id);
 
     //+++++++++++++++++++ API  Site touristique ++++++++++
-    @GET("/api/getAllSites/{id}")
+    @GET("/api/site-touristiques/{id}")
     Call<ArrayList<SiteTourismeModel>> findSiteTouristique(@Path("id") String id);
 
     @GET("/api/getSite/{id}")

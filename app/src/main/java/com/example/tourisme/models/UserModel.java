@@ -43,8 +43,8 @@ public class UserModel {
         this.password = password;
     }
 
-    public UserModel(String _id, String name, String email){
-        this.set_id(_id);
+    public UserModel(String name, String email, String password){
+        this.setPassword(password);
         this.setName(name);
         this.setEmail(email);
     }
